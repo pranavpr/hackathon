@@ -99,12 +99,12 @@ appears on the left side of the page.
 }
 
 #layout.active .menu-link {
-    left: 140px;
+    left: 150px;
 }
 
 #menu {
-    margin-left: -160px; /* "#menu" width */
-    width: 160px;
+    margin-left: -150px; /* "#menu" width */
+    width: 150px;
     position: fixed;
     top: 0;
     left: 0;
@@ -267,10 +267,14 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     }
 
     #layout.active .menu-link {
-        left: 140px;
+        left: 150px;
     }
 }
 
-form {
-    padding-left: 1em;
+#top-form {
+    padding-left: 0.75em;
+}
+
+.pure-form fieldset {
+    padding-top: 0.75em;
 }

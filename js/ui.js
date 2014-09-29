@@ -1,7 +1,9 @@
-/* Initialize Menu and Map */
+/* Global variables */
 var ready;
 var map;
 var geocoder;
+
+/* Initialize Menu and Map */
 ready = function() {
     /* Menu Expand/Collapse */
     var layout = $('#layout'),
@@ -16,6 +18,7 @@ ready = function() {
     });
     /* Map Initialize */
     function initialize() {
+        /* Center map on client's Geolocation */
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -30,6 +33,11 @@ ready = function() {
     google.maps.event.addDomListener(document, 'page:change', initialize);
 };
 
+/* Draw Map */
+$(document).ready(ready);
+$(document).on('page:chnage', ready);
+
+/* Geocode Address */
 function searchAddress() {
     var address = $("#address").val();
     var postalcode = $("#pincode").val();
@@ -59,13 +67,11 @@ function searchAddress() {
     });
 }
 
+/* Search handler */
 $("#search").click(function(evt) {
     evt.preventDefault();
     searchAddress();
 });
-/* Draw Map */
-$(document).ready(ready);
-$(document).on('page:chnage', ready);
 
 /* NProgress */
 $(document).on('page:fetch', function() {
