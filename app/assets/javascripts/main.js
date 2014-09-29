@@ -18,26 +18,31 @@ ready = function() {
     });
     /* Map Initialize */
     function initialize() {
-        /* Center map on client's Geolocation */
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                var mapOptions = {
-                    center: initialLocation,
-                    zoom: 12
-                };
-                if($("#map-canvas").length != 0) {
-                map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        if ($("#map-canvas").length != 0) {
+            /* Center map on client's Geolocation */
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    var mapOptions = {
+                        center: initialLocation,
+                        zoom: 12
+                    };
+
+                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                });
             }
-            });
         }
     }
     google.maps.event.addDomListener(document, 'page:change', initialize);
+    $("#search").click(function(evt) {
+        evt.preventDefault();
+        searchAddress();
+    });
 };
 
 /* Draw Map */
 $(document).ready(ready);
-$(document).on('page:chnage', ready);
+// $(document).on('page:chnage', ready);
 
 /* Geocode Address */
 function searchAddress() {
@@ -68,12 +73,6 @@ function searchAddress() {
         }
     });
 }
-
-/* Search handler */
-$("#search").click(function(evt) {
-    evt.preventDefault();
-    searchAddress();
-});
 
 /* NProgress */
 $(document).on('page:fetch', function() {
