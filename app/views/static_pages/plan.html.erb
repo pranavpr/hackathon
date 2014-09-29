@@ -1,0 +1,12 @@
+<% provide(:title, 'Plan') %>
+<% provide(:subtitle, 'Plan a spot fix') %>
+<form class="pure-form" id="top-form">
+  <fieldset>
+    <input type="text" placeholder="Address" id="address">
+    <input type="text" placeholder="Postal Code" id="pincode">
+    <input type="text" value="India" id="country" readonly>
+    <button type="submit" class="pure-button pure-button-primary" id="search">Search</button>
+  </fieldset>
+</form>
+<div class="content" id="map-canvas">
+</div>

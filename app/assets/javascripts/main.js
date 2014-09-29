@@ -26,7 +26,9 @@ ready = function() {
                     center: initialLocation,
                     zoom: 12
                 };
+                if($("#map-canvas").length != 0) {
                 map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            }
             });
         }
     }
