@@ -99,12 +99,12 @@ appears on the left side of the page.
 }
 
 #layout.active .menu-link {
-    left: 160px;
+    left: 140px;
 }
 
 #menu {
     margin-left: -160px; /* "#menu" width */
-    width: 184px;
+    width: 160px;
     position: fixed;
     top: 0;
     left: 0;
@@ -148,10 +148,10 @@ appears on the left side of the page.
         left: 0; /* "#menu width" */
         background: #000;
         background: rgba(0,0,0,0.7);
-        font-size: 11px; /* change this value to increase/decrease button size */
+        font-size: 10px; /* change this value to increase/decrease button size */
         z-index: 10;
-        width: 4em;
-        height: 4em;
+        width: 2em;
+        height: 2em;
         padding: 1em;
     }
 
@@ -267,6 +267,6 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     }
 
     #layout.active .menu-link {
-        left: 150px;
+        left: 140px;
     }
 }
