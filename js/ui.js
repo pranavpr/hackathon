@@ -28,7 +28,7 @@ ready = function() {
 
 /* Draw Map */
 $(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).on('page:chnage', ready);
 
 /* NProgress */
 $(document).on('page:fetch', function() {
