@@ -1,0 +1,16 @@
+<% provide(:title, 'Submit') %>
+<% provide(:subtitle, 'Submit a spot') %>
+<%= form_for(@spot, :html => {:class => 'pure-form pure-form-stacked'}) do |f| %>
+<%= render 'shared/error_messages' %>
+  <%= f.text_field :lat %>
+  <%= f.text_field :lng %>
+  <%= f.label :address %>
+  <%= f.text_area :address, :value=>params[:address] %>
+  <%= f.label :photo, 'Photo URL' %>
+  <%= f.text_field :photo %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+  <%= f.submit "Submit Spot", class: "pure-button pure-button-primary" %>
+<% end %>
