@@ -44,12 +44,14 @@ The content `<div>` is where all your content goes.
 */
 .content {
     margin: 0 auto;
-    padding: 0 2em;
-    height: 48em;
+    padding: 0em;
     margin-bottom: 50px;
     line-height: 1.6em;
 }
 
+#map-canvas {
+    height: 48em;
+}
 .header {
      margin: 0;
      color: #333;
@@ -248,8 +250,8 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 
     .header,
     .content {
-        padding-left: 2em;
-        padding-right: 2em;
+        padding-left: 0em;
+        padding-right: 0em;
     }
 
     #layout {
@@ -269,6 +271,10 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     #layout.active .menu-link {
         left: 190px;
     }
+
+    #top-form {
+    text-align: center;
+}
 }
 
 #top-form {
