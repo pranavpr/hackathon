@@ -2,6 +2,7 @@
 var ready;
 var map;
 var geocoder;
+var marker;
 
 /* Initialize Menu and Map */
 ready = function() {
@@ -25,10 +26,19 @@ ready = function() {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     var mapOptions = {
                         center: initialLocation,
-                        zoom: 12
+                        zoom: 16
                     };
-
                     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                    marker = new google.maps.Marker({
+                        position: initialLocation,
+                        map: map,
+                        draggable: true
+                    });
+                    google.maps.event.addListener(marker, 'dragend', function() {
+                        geocodePosition(marker.getPosition());
+                        map.panTo(marker.getPosition());
+                        map.setZoom(16);
+                    });
                 });
             }
         }
@@ -47,31 +57,34 @@ $(document).ready(ready);
 /* Geocode Address */
 function searchAddress() {
     var address = $("#address").val();
-    var postalcode = $("#pincode").val();
-    var country = $("#country").val();
     geocoder = new google.maps.Geocoder();
     geocoder.geocode({
-        'address': address + country + postalcode,
+        'address': address,
         'region': 'IN'
     }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            var marker = new google.maps.Marker({
-                position: results[0].geometry.location,
-                map: map,
-                title: results[0].formatted_address
-            });
-            var infowindow = new google.maps.InfoWindow({
-                content: results[0].formatted_address
-            });
+            marker.setPosition(results[0].geometry.location);
             map.setCenter(results[0].geometry.location);
-            map.setZoom(16);
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map, marker);
-            });
         } else {
             alert(address + " not found.");
         }
     });
+}
+
+function geocodePosition(pos) {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+            latLng: pos
+        },
+        function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                $("#address").val(results[0].formatted_address);
+                //$("#mapErrorMsg").hide(100);
+            } else {
+                //$("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+            }
+        }
+    );
 }
 
 /* NProgress */
