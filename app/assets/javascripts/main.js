@@ -42,6 +42,7 @@ ready = function() {
                         draggable: true
                     });
                     if($("#error_explanation").length) {
+                        marker.setMap(null);
                         markerpos =  new google.maps.LatLng ($('#spot_lat').val(), $('#spot_lng').val());
                         marker = new google.maps.Marker({
                         position: markerpos,
