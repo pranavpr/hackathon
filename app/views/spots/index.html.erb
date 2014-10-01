@@ -1,24 +1,39 @@
 <% provide(:title, 'Join') %>
-<% provide(:subtitle, 'Join a spot near you') %>
+<% provide(:subtitle, 'Click on a marker to join the spot') %>
 <div class="content">
   <div id="map-all">
   </div>
   <script>
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			var mapOptions = {
-				center: initialLocation,
-				zoom: 16
-			};
-			map = new google.maps.Map(document.getElementById('map-all'), mapOptions);
-			<% @spots.each do |	spot | %>
-				marker = new google.maps.Marker({
-					position: new google.maps.LatLng( <%= spot.lat %> , <%= spot.lng %> ),
-					map: map
-				}); 
-			<% end %>
-		});
-	}
+  var marker;
+  var markers = new Array();
+  var infowindow = null;
+  var map;
+  if (navigator.geolocation) {
+  	navigator.geolocation.getCurrentPosition(function(position) {
+  		initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  		var mapOptions = {
+  			center: initialLocation,
+  			zoom: 16
+  		};
+  		map = new google.maps.Map(document.getElementById('map-all'), mapOptions); 
+  		<% @spots.each do |	spot | %>
+  			marker = new google.maps.Marker({
+  				position: new google.maps.LatLng( <%= spot.lat %> , <%= spot.lng %> ),
+  				address: '<%= spot.address %>',
+  				id: '<%= spot.id %>',
+  				map: map
+  			});
+  		markers.push(marker); 
+  		<% end %>
+  		for (var i = 0; i < markers.length; i++) {
+  			var marker = markers[i];
+  			infowindow = new google.maps.InfoWindow();
+  			google.maps.event.addListener(marker, 'click', function() {
+  				infowindow.setContent("<div style='width:300px;'>"+this.address + "<br/><a href='/spots/"+ this.id +"'>View</a></div>");
+  				infowindow.open(map, this);
+  			});
+  		}
+  	});
+  }
   </script>
 </div>

@@ -1,5 +1,5 @@
 <% provide(:title, 'Plan') %>
-<% provide(:subtitle, 'Search address or drag the marker on map to propose a spot') %>
+<% provide(:subtitle, 'Search for an address or drag the marker on map to propose a spot') %>
 <div class="content">
   <%= form_for(@spot, :html => {:class => 'pure-form pure-form-stacked', :id => 'top-form'}) do |f| %>
   <%= render 'shared/error_messages' %>
@@ -21,13 +21,14 @@
           <%= f.text_area :description, :class => 'pure-input-1', :placeholder => 'Description' %>
           <%= f.date_field :date, :class => 'pure-input-1', :placeholder => 'dd/mm/yyyy' %>
           <%= f.submit 'Submit', class: "pure-button pure-button-primary", id: "submit" %>
+          <%= link_to "Cancel", plan_path, class: "pure-button button-error" %>
         </div>
       </div>
     </fieldset>
   <% end %>
-  <div id='instruction'>
+  <aside id='instruction'>
     Click on marker to submit the spot
-  </div>
+  </aside>
   <div id="map-canvas">
   </div>
 </div>
