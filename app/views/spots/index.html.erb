@@ -25,13 +25,16 @@
   			});
   		markers.push(marker); 
   		<% end %>
+  		var bounds = new google.maps.LatLngBounds ();
   		for (var i = 0; i < markers.length; i++) {
   			var marker = markers[i];
+  			bounds.extend(marker.position);
   			infowindow = new google.maps.InfoWindow();
   			google.maps.event.addListener(marker, 'click', function() {
   				infowindow.setContent("<div style='width:300px;'>"+this.address + "<br/><a href='/spots/"+ this.id +"'>View</a></div>");
   				infowindow.open(map, this);
   			});
+  			map.fitBounds(bounds);
   		}
   	});
   }
