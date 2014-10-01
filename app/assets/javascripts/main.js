@@ -24,10 +24,11 @@ ready = function() {
             if($("#error_explanation").length) {
                 $("#newspotform").show();
                 $("#u-form").hide();
+                $("#instruction").hide();
             } else {
             $("#newspotform").hide();
         }
-            $("#instruction").hide();
+            //$("#instruction").hide();
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -55,7 +56,7 @@ ready = function() {
                         geocodePosition(marker.getPosition());
                         map.panTo(marker.getPosition());
                         map.setZoom(16);
-                        $("#instruction").show();
+                        $("#instruction").html('Click on marker to submit the spot');
                     });
                     google.maps.event.addListener(marker, 'click', function() {
                         $("#newspotform").show();
@@ -92,6 +93,7 @@ function searchAddress() {
             $("#spot_lat").val(results[0].geometry.location.lat());
             $("#spot_lng").val(results[0].geometry.location.lng());
             $("#spot_address").val(results[0].formatted_address);
+            $("#instruction").html('Click on marker to submit the spot');
         } else {
             alert(address + " not found.");
         }
