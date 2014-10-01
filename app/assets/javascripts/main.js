@@ -23,6 +23,7 @@ ready = function() {
             /* Center map on client's Geolocation */
             if($("#error_explanation").length) {
                 $("#newspotform").show();
+                $("#u-form").hide();
             } else {
             $("#newspotform").hide();
         }
@@ -41,7 +42,13 @@ ready = function() {
                         draggable: true
                     });
                     if($("#error_explanation").length) {
-                        marker.setOptions({draggable: false});
+                        markerpos =  new google.maps.LatLng ($('#spot_lat').val(), $('#spot_lng').val());
+                        marker = new google.maps.Marker({
+                        position: markerpos,
+                        map: map,
+                        draggable: false
+                    });
+                        map.setCenter(markerpos);
                     }
                     google.maps.event.addListener(marker, 'dragend', function() {
                         geocodePosition(marker.getPosition());
