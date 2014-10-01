@@ -1,16 +1,33 @@
-<% provide(:title, 'Submit') %>
-<% provide(:subtitle, 'Submit a spot') %>
-<%= form_for(@spot, :html => {:class => 'pure-form pure-form-stacked'}) do |f| %>
-<%= render 'shared/error_messages' %>
-  <%= f.text_field :lat %>
-  <%= f.text_field :lng %>
-  <%= f.label :address %>
-  <%= f.text_area :address, :value=>params[:address] %>
-  <%= f.label :photo, 'Photo URL' %>
-  <%= f.text_field :photo %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.label :date %>
-  <%= f.date_field :date %>
-  <%= f.submit "Submit Spot", class: "pure-button pure-button-primary" %>
-<% end %>
+<% provide(:title, 'Plan') %>
+<% provide(:subtitle, 'Search for spot or drag the marker to spot') %>
+<div class="content">
+  <%= form_for(@spot, :html => {:class => 'pure-form pure-form-stacked', :id => 'top-form'}) do |f| %>
+  <%= render 'shared/error_messages' %>
+    <fieldset>
+      <div class="pure-g" id='u-form'>
+        <div class="pure-u-1 pure-u-md-3-4">
+          <input class="pure-input-2-3" type="text" placeholder="Address" id="q_address">
+        </div>
+        <div class="pure-u-1 pure-u-md-1-4">
+          <button class="pure-button pure-button-primary" id="u_search"><i class="fa fa-search"></i>&nbsp;Search</button>
+        </div>
+      </div>
+      <div class="pure-g" id='newspotform'>
+        <div class="pure-u-1 pure-u-md-3-4">
+          <%= f.hidden_field :lat %>
+          <%= f.hidden_field :lng %>
+          <%= f.text_area :address, :class => 'pure-input-1', :placeholder => 'Address' %>
+          <%= f.text_field :photo, :class => 'pure-input-1', :placeholder => 'Photo URL' %>
+          <%= f.text_area :description, :class => 'pure-input-1', :placeholder => 'Description' %>
+          <%= f.date_field :date, :class => 'pure-input-1', :placeholder => 'dd/mm/yyyy' %>
+          <%= f.submit 'Submit', class: "pure-button pure-button-primary", id: "submit" %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+  <div id='instruction'>
+    Click on marker to submit the spot
+  </div>
+  <div id="map-canvas">
+  </div>
+</div>

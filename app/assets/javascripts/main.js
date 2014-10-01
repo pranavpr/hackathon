@@ -21,6 +21,8 @@ ready = function() {
     function initialize() {
         if ($("#map-canvas").length != 0) {
             /* Center map on client's Geolocation */
+            $("#newspotform").hide();
+            $("#instruction").hide();
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -38,13 +40,20 @@ ready = function() {
                         geocodePosition(marker.getPosition());
                         map.panTo(marker.getPosition());
                         map.setZoom(16);
+                        $("#instruction").show();
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+                        $("#newspotform").show();
+                        $("#u-form").hide();
+                        $("#instruction").hide();
+                        marker.setOptions({draggable: false});
                     });
                 });
             }
         }
     }
     google.maps.event.addDomListener(document, 'page:change', initialize);
-    $("#search").click(function(evt) {
+    $("#u_search").click(function(evt) {
         evt.preventDefault();
         searchAddress();
     });
@@ -56,7 +65,7 @@ $(document).ready(ready);
 
 /* Geocode Address */
 function searchAddress() {
-    var address = $("#address").val();
+    var address = $("#q_address").val();
     geocoder = new google.maps.Geocoder();
     geocoder.geocode({
         'address': address,
@@ -65,6 +74,9 @@ function searchAddress() {
         if (status == google.maps.GeocoderStatus.OK) {
             marker.setPosition(results[0].geometry.location);
             map.setCenter(results[0].geometry.location);
+            $("#spot_lat").val(results[0].geometry.location.lat());
+            $("#spot_lng").val(results[0].geometry.location.lng());
+            $("#spot_address").val(results[0].formatted_address);
         } else {
             alert(address + " not found.");
         }
@@ -78,7 +90,10 @@ function geocodePosition(pos) {
         },
         function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                $("#address").val(results[0].formatted_address);
+                $("#spot_address").val(results[0].formatted_address);
+                $("#q_address").val(results[0].formatted_address);
+                 $("#spot_lat").val(results[0].geometry.location.lat());
+            $("#spot_lng").val(results[0].geometry.location.lng());
                 //$("#mapErrorMsg").hide(100);
             } else {
                 //$("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);

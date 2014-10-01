@@ -49,7 +49,7 @@ The content `<div>` is where all your content goes.
     line-height: 1.6em;
 }
 
-#map-canvas {
+#map-canvas, #map-spot, #map-all {
     height: 48em;
 }
 .header {
@@ -271,10 +271,6 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     #layout.active .menu-link {
         left: 190px;
     }
-
-    #top-form {
-    text-align: center;
-}
 }
 
 #top-form {
@@ -283,4 +279,11 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 
 .pure-form fieldset {
     padding-top: 0.75em;
+}
+
+#error_explanation {
+  color: #f00;
+}
+
+.field_with_errors {
 }

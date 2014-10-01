@@ -1,10 +1,17 @@
 class SpotsController < ApplicationController
+
+	def index
+		@spots = Spot.all
+	end
+
 	def show
 		@spot = Spot.find(params[:id])
 	end
+
 	def new
 		@spot = Spot.new
 	end
+
 	def create
 		@spot = Spot.new(spot_params)    # Not the final implementation!
 		if @spot.save
@@ -14,9 +21,10 @@ class SpotsController < ApplicationController
 			render 'new'
 		end
 	end
+
 	private
 
-    def spot_params
-      params.require(:spot).permit(:lat, :lng, :address, :photo, :description, :date)
-    end
+	def spot_params
+		params.require(:spot).permit(:lat, :lng, :address, :photo, :description, :date)
+	end
 end
