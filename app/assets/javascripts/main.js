@@ -21,7 +21,11 @@ ready = function() {
     function initialize() {
         if ($("#map-canvas").length != 0) {
             /* Center map on client's Geolocation */
+            if($("#error_explanation").length) {
+                $("#newspotform").show();
+            } else {
             $("#newspotform").hide();
+        }
             $("#instruction").hide();
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -36,6 +40,9 @@ ready = function() {
                         map: map,
                         draggable: true
                     });
+                    if($("#error_explanation").length) {
+                        marker.setOptions({draggable: false});
+                    }
                     google.maps.event.addListener(marker, 'dragend', function() {
                         geocodePosition(marker.getPosition());
                         map.panTo(marker.getPosition());
