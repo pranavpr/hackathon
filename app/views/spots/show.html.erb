@@ -1,47 +1,58 @@
 <% provide(:title, 'Spot') %>
 <% provide(:subtitle, @spot.address) %>
 <div class="content">
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div id="map-spot">
-      </div>
+  <div class="pure-g" id="info">
+    <div class="pure-u-3-4 pure-u-md-1-2">
+      <% flash.each do |key, value| %>
+        <div class="<%= key %> alert-dismissible"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button><%= value %></div>
+      <% end %>
     </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-      <img class="pure-img" src='<%= @spot.photo %>'/><br/>
-      Description:
-      <%= @spot.description %>
-      <br/>
-      Proposed Date:
-      <%= @spot.date %>
-      <br/>
-    </div>
-    <script>
-	var mapOptions = {
-		center: {
-			lat: <%= @spot.lat %> ,
-			lng: <%= @spot.lng %>,
-		},
-		zoom: 16,
-    zoomControlOptions: {
-                            style: google.maps.ZoomControlStyle.DEFAULT,
-                            position: google.maps.ControlPosition.TOP_RIGHT
-                        },
-                        streetViewControl: false,
-                        mapTypeControl: true,
-                        panControl: false,
-                        rotateControl: false,
-                        scaleControl: false,
-                        overviewMapControl: false
-	};
-	map = new google.maps.Map(document.getElementById('map-spot'), mapOptions);
-	marker = new google.maps.Marker({
-		position: {
-			lat: <%= @spot.lat %> ,
-			lng: <%= @spot.lng %>
-		},
-    icon: '<%= asset_path 'flag-r.png' %>',
-		map: map
-	});
-    </script>
   </div>
+  <div id="map-all">
+  </div>
+  <script>
+    var marker;
+    var infowindow = null;
+    var map;
+            var mapOptions = {
+                zoom: 16,
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.DEFAULT,
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                },
+                streetViewControl: false,
+                mapTypeControl: true,
+                panControl: false,
+                rotateControl: false,
+                scaleControl: false,
+                overviewMapControl: false
+            };
+            map = new google.maps.Map(document.getElementById('map-all'), mapOptions);
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng( <%= @spot.lat %> , <%= @spot.lng %> ),
+                address: '<%= @spot.address %>',
+                id: '<%= @spot.id %>',
+                icon: '<%= asset_path 'flag-r.png' %>',
+                map: map
+            });
+            map.setCenter(marker.position);
+            var infowindow = new google.maps.InfoWindow(
+            {
+              maxWidth: 500
+            });
+            //infowindow.setContent("<div class='pure-g'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div>");
+            infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='<%= @spot.photo %>'></div></div><div class='pure-u-1-2'><div class='l-box'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div></div></div>");
+            infowindow.open(map, marker);
+            google.maps.event.addDomListener(marker, 'click', function() {
+                infowindow.setContent("<div style='width:300px;'>" + marker.address + "<br/><a href='/spots/" + marker.id + "'>Join this spot</a></div>");
+                infowindow.open(map, marker);
+            });
+            //Resize Function
+    google.maps.event.addDomListener(window, "resize", function() {
+      var center = map.getCenter();
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(center);
+    });
+  </script>
 </div>

@@ -4,7 +4,8 @@
   <%= form_for(@spot, :html => {:class => 'pure-form pure-form-stacked', :id => 'top-form'}) do |f| %>
   <div class="pure-g">
   <div class="pure-u-3-4 pure-u-md-1-2">
-  <div class="info" id='instruction'>
+  <div class="info alert-dismissible" id='instruction'>
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
     Search for an address or drag the marker on map to propose a spot
   </div>
   <%= render 'shared/error_messages' %>
@@ -104,6 +105,12 @@ function initialize() {
                     draggable: false
                 });
             });
+            //Resize Function
+    google.maps.event.addDomListener(window, "resize", function() {
+      var center = map.getCenter();
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(center);
+    });
         });
     }
 }

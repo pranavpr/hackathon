@@ -1,9 +1,7 @@
 Hackathon::Application.routes.draw do
   resources :spots
   root "spots#index"
-  match '/join',    to: 'static_pages#join',    via: 'get'
-  match '/planold',    to: 'static_pages#plan',    via: 'get'
-  match '/report',    to: 'static_pages#report',    via: 'get'
+  match '/report',    to: 'spots#report',    via: 'get'
   match '/plan',    to: 'spots#new',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

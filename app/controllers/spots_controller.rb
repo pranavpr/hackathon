@@ -4,8 +4,26 @@ class SpotsController < ApplicationController
 		@spots = Spot.all
 	end
 
+	def report
+		@spots = Spot.all
+	end
+
 	def show
 		@spot = Spot.find(params[:id])
+	end
+
+	def edit
+		@spot = Spot.find(params[:id])
+	end
+
+	def update
+		@spot = Spot.find(params[:id])
+		if @spot.update_attributes(spot_params)
+			flash[:success] = "Spot updated"
+			redirect_to @spot
+		else
+			render 'edit'
+		end
 	end
 
 	def new
@@ -25,6 +43,6 @@ class SpotsController < ApplicationController
 	private
 
 	def spot_params
-		params.require(:spot).permit(:lat, :lng, :address, :photo, :description, :date)
+		params.require(:spot).permit(:lat, :lng, :address, :photo, :description, :date, :after_photo, :after_desc, :status)
 	end
 end
