@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930163237) do
+ActiveRecord::Schema.define(version: 20141002193501) do
 
   create_table "spots", force: true do |t|
     t.float    "lat"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20140930163237) do
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "after_photo"
+    t.integer  "status"
+    t.text     "after_desc"
   end
 
 end

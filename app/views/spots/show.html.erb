@@ -14,11 +14,7 @@
     var marker;
     var infowindow = null;
     var map;
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             var mapOptions = {
-                center: initialLocation,
                 zoom: 16,
                 zoomControl: true,
                 zoomControlOptions: {
@@ -58,7 +54,5 @@
       google.maps.event.trigger(map, "resize");
       map.setCenter(center);
     });
-        });
-    }
   </script>
 </div>
