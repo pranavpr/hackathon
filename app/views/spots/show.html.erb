@@ -4,7 +4,7 @@
   <div class="pure-g" id="info">
     <div class="pure-u-3-4 pure-u-md-1-2">
       <% flash.each do |key, value| %>
-        <div class="<%= key %>"><%= value %></div>
+        <div class="<%= key %> alert-dismissible"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button><%= value %></div>
       <% end %>
     </div>
   </div>
@@ -43,7 +43,7 @@
             map.setCenter(marker.position);
             var infowindow = new google.maps.InfoWindow(
             {
-              maxWidth: 300
+              maxWidth: 500
             });
             //infowindow.setContent("<div class='pure-g'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div>");
             infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='<%= @spot.photo %>'></div></div><div class='pure-u-1-2'><div class='l-box'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div></div></div>");
