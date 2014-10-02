@@ -16,10 +16,10 @@ The primary functional requirements for the app include
 
 ###Status so far
 
-- **Planning a spot fix** /- Users can plan a hot fix and submit the same
-- **Joining a spot fix** /- Work in progress
-- **Reporting a spot fix** /- Users can report a hot fix. They can submit after poto and description.
-- **Map based dashboard** /- Users can see the all the spot fixes. `Green` markers on map represent completed spots and `Red` markers represent upcoming spots.
+- **Planning a spot fix** \- Users can plan a hot fix and submit the same
+- **Joining a spot fix** \- Work in progress
+- **Reporting a spot fix** \- Users can report a hot fix. They can submit after poto and description.
+- **Map based dashboard** \- Users can see the all the spot fixes. `Green` markers on map represent completed spots and `Red` markers represent upcoming spots.
 
 ###Demo
 
@@ -27,13 +27,13 @@ The latest build is running live at http://indiarising.herokuapp.com/
 
 ###Screenshots
 
-(http://i.imgur.com/H41jrDu.png)
+![Join spot fix](http://i.imgur.com/H41jrDu.png)
 
-(http://i.imgur.com/TFRjbTx.png)
+![Plan spot fix](http://i.imgur.com/TFRjbTx.png)
 
-(http://i.imgur.com/jqK1bQ3.png)
+![Report spot fix](http://i.imgur.com/jqK1bQ3.png)
 
-(http://i.imgur.com/haYFJEW.png)
+![Report spot fix](http://i.imgur.com/haYFJEW.png)
 
 ###To Do
 
