@@ -19,9 +19,19 @@
 	var mapOptions = {
 		center: {
 			lat: <%= @spot.lat %> ,
-			lng: <%= @spot.lng %>
+			lng: <%= @spot.lng %>,
 		},
-		zoom: 16
+		zoom: 16,
+    zoomControlOptions: {
+                            style: google.maps.ZoomControlStyle.DEFAULT,
+                            position: google.maps.ControlPosition.TOP_RIGHT
+                        },
+                        streetViewControl: false,
+                        mapTypeControl: true,
+                        panControl: false,
+                        rotateControl: false,
+                        scaleControl: false,
+                        overviewMapControl: false
 	};
 	map = new google.maps.Map(document.getElementById('map-spot'), mapOptions);
 	marker = new google.maps.Marker({

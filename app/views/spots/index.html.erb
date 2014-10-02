@@ -20,7 +20,18 @@
   		initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   		var mapOptions = {
   			center: initialLocation,
-  			zoom: 16
+  			zoom: 16,
+        zoomControl: true,
+                zoomControlOptions: {
+                  style: google.maps.ZoomControlStyle.DEFAULT,
+                  position: google.maps.ControlPosition.TOP_RIGHT
+                },
+                streetViewControl: false,
+                mapTypeControl: true,
+                panControl: false,
+                rotateControl: false,
+                scaleControl: false,
+                overviewMapControl: false
   		};
   		map = new google.maps.Map(document.getElementById('map-all'), mapOptions); 
   		<% @spots.each do |	spot | %>
@@ -28,19 +39,23 @@
   				position: new google.maps.LatLng( <%= spot.lat %> , <%= spot.lng %> ),
   				address: '<%= spot.address %>',
   				id: '<%= spot.id %>',
+          icon: '<%= asset_path 'flag-r.png' %>',
   				map: map
   			});
   		markers.push(marker); 
   		<% end %>
   		var bounds = new google.maps.LatLngBounds ();
+      var infowindow = new google.maps.InfoWindow();
   		for (var i = 0; i < markers.length; i++) {
   			var marker = markers[i];
   			bounds.extend(marker.position);
-  			infowindow = new google.maps.InfoWindow();
-  			google.maps.event.addListener(marker, 'click', function() {
-  				infowindow.setContent("<div style='width:300px;'>"+this.address + "<br/><a href='/spots/"+ this.id +"'>View</a></div>");
-  				infowindow.open(map, this);
-  			});
+  			
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent("<div style='width:300px;'>"+this.address + "<br/><a href='/spots/"+ this.id +"'>View</a></div>");
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
   			map.fitBounds(bounds);
   		}
   	});

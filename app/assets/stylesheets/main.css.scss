@@ -203,7 +203,7 @@ appears on the left side of the page. */
 #top-form, #info {
     z-index: 100; 
     position: absolute; 
-    margin: 3em 0em 0em 5em;
+    margin: 3em 0em 0em 3em;
     width: 100%;
 }
 
@@ -230,9 +230,6 @@ appears on the left side of the page. */
     #layout.active .menu-link {
         left: 190px;
     }
-    #top-form { 
-    margin: 3em 0em 0em 5em;
-}
 } 
 
 .pure-form fieldset {
