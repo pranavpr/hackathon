@@ -40,24 +40,33 @@
   				address: '<%= spot.address %>',
   				id: '<%= spot.id %>',
           icon: '<%= asset_path 'flag-r.png' %>',
+          photo: '<%= spot.photo %>',
   				map: map
   			});
   		markers.push(marker); 
   		<% end %>
   		var bounds = new google.maps.LatLngBounds ();
-      var infowindow = new google.maps.InfoWindow();
+      var infowindow = new google.maps.InfoWindow(
+      {
+        maxWidth: 300
+      });
   		for (var i = 0; i < markers.length; i++) {
   			var marker = markers[i];
   			bounds.extend(marker.position);
-  			
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent("<div style='width:300px;'>"+this.address + "<br/><a href='/spots/"+ this.id +"'>Join this spot</a></div>");
+          infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='" + this.photo + "'><br/><a class='pure-button pure-button-primary' href='/spots/" + this.id + "'>Join this spot</a></div></div><div class='pure-u-1-2'><div class='l-box'>" + this.address + "</div></div></div>");
           infowindow.open(map, marker);
         }
       })(marker, i));
   			map.fitBounds(bounds);
   		}
+      //Resize Function
+    google.maps.event.addDomListener(window, "resize", function() {
+      var center = map.getCenter();
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(center);
+    });
   	});
   }
   </script>
