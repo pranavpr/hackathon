@@ -52,7 +52,7 @@
   			
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent("<div style='width:300px;'>"+this.address + "<br/><a href='/spots/"+ this.id +"'>View</a></div>");
+          infowindow.setContent("<div style='width:300px;'>"+this.address + "<br/><a href='/spots/"+ this.id +"'>Join this spot</a></div>");
           infowindow.open(map, marker);
         }
       })(marker, i));
