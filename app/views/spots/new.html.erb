@@ -42,17 +42,6 @@ var geocoder;
 var marker;
 
 /* Initialize Menu and Map */
-/* Menu Expand/Collapse */
-var layout = $('#layout'),
-    menu = $('#menu'),
-    menuLink = $('#menuLink');
-menuLink.click(function(evt) {
-    var active = 'active';
-    evt.preventDefault();
-    layout.toggleClass(active);
-    menu.toggleClass(active);
-    menuLink.toggleClass(active);
-});
 /* Map Initialize */
 function initialize() {
     /* Center map on client's Geolocation */
