@@ -16,9 +16,9 @@
           <%= f.text_field :after_photo, :class => 'pure-input-1', :placeholder => 'Photo URL After', :readonly => @spot.status == 1 ? true : false %>
           <%= f.text_area :after_desc, :class => 'pure-input-1', :placeholder => 'Description After', :readonly => @spot.status == 1 ? true : false %>
           <%= f.date_field :date, :class => 'pure-input-1', :placeholder => 'dd/mm/yyyy', :readonly=>true %>
-          <%= f.submit 'Submit', class: "pure-button pure-button-primary", id: "submit", :disabled => @spot.status == 1 ? true : false %>
+          <%= f.button '<i class="fa fa-check"></i>&nbsp;Submit'.html_safe, class: "pure-button pure-button-primary", id: "submit", :disabled => @spot.status == 1 ? true : false %>
           <%= f.hidden_field :status, :value => 1 %>
-          <%= link_to "Cancel", report_path, class: "pure-button button-error" %>
+          <%= link_to '<i class="fa fa-times"></i>&nbsp;Cancel'.html_safe, report_path, class: "pure-button button-error" %>
       </div>
     </fieldset>
   <% end %>
