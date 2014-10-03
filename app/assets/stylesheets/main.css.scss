@@ -41,12 +41,6 @@ body, html, div#layout, div#main, div.content {
     padding: 0em;
     line-height: 1.6em;
 }
-#map-canvas, #map-all, #map-canvas-edit {
-    height: 100%;
-}
-#map-spot {
-    height: 48em;
-}
 .header {
     margin: 0;
     color: #333;
@@ -198,12 +192,29 @@ appears on the left side of the page. */
     background: none;
 }
 #top-form, #info {
-    z-index: 100;
-    position: absolute;
-    margin: 3em 0em 0em 3em;
-    width: 100%;
+    position: relative;
+    z-index: 100; /* The z-index should be higher than Google Maps */
+    margin: 0px auto 0;
+    height: auto;
+    color: white;
 }
-
+#map-canvas, #map-all, #map-canvas-edit {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
+}
+.mapoverlay {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+}
+.u-search-btn {
+        padding-top: 0.5em;
+}
 /* -- Responsive Styles (Media Queries) ------------------------------------- */
 /* Hides the menu at `48em`, but modify this based on your app's needs. */
 
@@ -227,9 +238,14 @@ appears on the left side of the page. */
     #layout.active .menu-link {
         left: 190px;
     }
-}
-.pure-form fieldset {
-    padding-top: 0.75em;
+    .mapoverlay {
+        max-width: 60%;
+    }
+    .u-search-btn {
+        right: 0em;
+        position: absolute;
+        padding-top: 0.1em;
+    }
 }
 .button-error {
     color: white;
@@ -238,8 +254,7 @@ appears on the left side of the page. */
 .info, .success, .warning, .error, .validation {
     border: 1px solid transparent;
     border-radius: 5px;
-    margin: 10px 0px;
-    padding: 15px 10px 15px 50px;
+    padding: 10px 10px 10px 50px;
     background-repeat: no-repeat;
     background-position: 10px center;
 }
@@ -267,21 +282,19 @@ appears on the left side of the page. */
     color: #a94442;
     background-image: image-url('error.png');
 }
-.alert-dismissable,
-.alert-dismissible {
-  padding-right: 35px;
+.alert-dismissable, .alert-dismissible {
+    padding-right: 35px;
 }
-.alert-dismissable .close,
-.alert-dismissible .close {
-  position: relative;
-  top: 4px;
-  right: -21px;
-  color: inherit;
-  -webkit-appearance: none;
-  border: 0;
-  background: 0 0;
-  float: right;
+.alert-dismissable .close, .alert-dismissible .close {
+    position: relative;
+    top: 4px;
+    right: -21px;
+    color: inherit;
+    -webkit-appearance: none;
+    border: 0;
+    background: 0 0;
+    float: right;
 }
 .l-box {
-    padding: 0.5em;
+    padding: 0.25em;
 }
