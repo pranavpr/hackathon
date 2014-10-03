@@ -1,7 +1,7 @@
 India Rising
 =============
 
-This applicaton is being developed as hackathon organized by [The Ugly Indian](http://theuglyindian.com) and [community](https://www.facebook.com/theugl.yindian). 
+This applicaton is being developed as part of hackathon organized by [The Ugly Indian](http://theuglyindian.com) and [Facebook community](https://www.facebook.com/theugl.yindian). 
 
 ###Requirements
 
@@ -38,6 +38,7 @@ The latest build is running live at http://indiarising.herokuapp.com/
 ###To Do
 
 - User register and login via Facebook, Twitter <em>etc.</em>
+- Join a spot fix
 - Improve UI and UE
 
 ###Epilogue
