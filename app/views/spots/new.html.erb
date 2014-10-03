@@ -3,7 +3,7 @@
 <div class="content">
   <%= form_for(@spot, :html => {:class => 'pure-form pure-form-stacked', :id => 'top-form'}) do |f| %>
   <div class="pure-g">
-  <div class="pure-u-3-4 pure-u-md-1-2">
+  <div class="pure-u-3-4 pure-u-md-1-2" id='u_flash'>
   <div class="info alert-dismissible" id='instruction'>
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
     Search for an address or drag the marker on map to propose a spot
@@ -94,7 +94,7 @@ function initialize() {
                 geocodePosition(marker.getPosition());
                 map.panTo(marker.getPosition());
                 map.setZoom(16);
-                $("#instruction").html('Click on marker to submit the spot');
+                $("#u_flash").html('<div class="info alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
             });
             google.maps.event.addListener(marker, 'click', function() {
               if ($("#q_address").val().length != 0){
@@ -140,9 +140,9 @@ function searchAddress() {
             $("#spot_lat").val(results[0].geometry.location.lat());
             $("#spot_lng").val(results[0].geometry.location.lng());
             $("#spot_address").val(results[0].formatted_address);
-            $("#instruction").html('Click on marker to submit the spot');
+            $("#u_flash").html('<div class="info alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
         } else {
-            alert(address + " not found.");
+            $("#u_flash").html('<div class="error alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Address not found</div>');
         }
     });
 }
