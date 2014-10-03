@@ -106,7 +106,7 @@ function initialize() {
                 geocodePosition(marker.getPosition());
                 map.panTo(marker.getPosition());
                 map.setZoom(16);
-                $("#u_flash").html('<div class="info alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
+                $("#u_flash").html('<div class="warning alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
             });
             google.maps.event.addListener(marker, 'click', function() {
               if ($("#q_address").val().length != 0){
