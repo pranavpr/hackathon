@@ -193,7 +193,7 @@ appears on the left side of the page. */
 }
 #top-form, #info {
     position: relative;
-    z-index: 100; /* The z-index should be higher than Google Maps */
+    z-index: 5; /* The z-index should be higher than Google Maps */
     margin: 0px auto 0;
     height: auto;
     color: white;
