@@ -57,7 +57,8 @@
   			bounds.extend(marker.position);
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          var buttontext = (this.status == 1) ? 'View this spot' : 'Report this spot';
+          // var buttontext = (this.status == 1) ? 'View this spot' : 'Report this spot';
+          var buttontext = 'Report this spot';
           infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='" + this.photo + "'><br/><a class='pure-button pure-button-primary' href='/spots/" + this.id + "/edit'>"+ buttontext +"</a></div></div><div class='pure-u-1-2'><div class='l-box'>" + this.address + "</div></div></div>");
           infowindow.open(map, marker);
         }
