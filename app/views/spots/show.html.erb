@@ -3,6 +3,10 @@
 <div class="content">
 <div class="mapoverlay">
   <div id="info">
+  <%= @spot.status == 1 ? '<div class="warning alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+    Spot already fixed
+  </div>'.html_safe : '' %>
       <% flash.each do |key, value| %>
         <div class="<%= key %> alert-dismissible"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button><%= value %></div>
       <% end %>
@@ -24,7 +28,8 @@
                     </div>
                     </li>
                 </ul>
-                <button class="button-choose pure-button" id='u_join'>Join</button>
+                <button class="button-choose pure-button" id='u_join' <%= @spot.status == 1 ? 'disabled' : '' %> ><i class="fa fa-check-circle"></i>&nbsp;Join</button>
+                <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, root_path, class: "button-choose pure-button" %>
             </div>
         </div>
     </div>
@@ -54,7 +59,7 @@
                 position: new google.maps.LatLng( <%= @spot.lat %> , <%= @spot.lng %> ),
                 address: '<%= @spot.address %>',
                 id: '<%= @spot.id %>',
-                icon: '<%= asset_path 'flag-r.png' %>',
+                icon: '<%= asset_path @spot.status == 1 ? "flag-g.png" : "flag-r.png" %>',
                 map: map
             });
             map.setCenter(marker.position);

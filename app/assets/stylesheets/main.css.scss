@@ -196,7 +196,6 @@ appears on the left side of the page. */
     z-index: 5; /* The z-index should be higher than Google Maps */
     margin: 0px auto 0;
     height: auto;
-    color: white;
 }
 #map-canvas, #map-all, #map-canvas-edit {
     height: 100%;
@@ -323,9 +322,15 @@ appears on the left side of the page. */
 }
 
 .spot-info-list li {
-    padding: 0.8em 0;
+    padding: 0.8em 0.8em;
     background: #f7f7f7;
     border-bottom: 1px solid #e7e7e7;
+}
+
+.spot-u{
+    padding-right:0.8em;
+    padding-left: 0.8em;
+    padding-top: 0.8em;
 }
 .button-choose {
     border: 1px solid #ccc;
@@ -359,10 +364,4 @@ appears on the left side of the page. */
   -webkit-transition: width 0.6s ease;
   -o-transition: width 0.6s ease;
   transition: width 0.6s ease;
-}
-
-#uprogressbar {
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
 }
