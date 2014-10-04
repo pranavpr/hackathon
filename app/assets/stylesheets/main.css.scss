@@ -41,13 +41,18 @@ body, html, div#layout, div#main, div.content {
     padding: 0em;
     line-height: 1.6em;
 }
+.textcontent {
+    max-width: 800px;
+    padding: 0 2em;
+    line-height: 1.6em;
+    margin: 0 auto;
+}
 .header {
     margin: 0;
     color: #333;
     text-align: center;
     padding: 2.5em 2em 0;
     border-bottom: 1px solid #eee;
-    display: none;
 }
 .header h1 {
     margin: 0.2em 0;
@@ -364,4 +369,40 @@ appears on the left side of the page. */
   -webkit-transition: width 0.6s ease;
   -o-transition: width 0.6s ease;
   transition: width 0.6s ease;
+}
+
+.message {
+margin-bottom: 1rem;
+padding: 1em;
+color: #717171;
+background-color: #f9f9f9;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+  content:"\201C";
+}
+blockquote:after {
+  color: #ccc;
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+  content:"\201D";
+}
+blockquote p {
+  display: inline;
 }

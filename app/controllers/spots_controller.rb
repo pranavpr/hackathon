@@ -5,7 +5,7 @@ class SpotsController < ApplicationController
 	end
 
 	def report
-		@spots = Spot.all
+		@spots = Spot.where('spots.status IS NOT 1')
 	end
 
 	def show
@@ -14,6 +14,14 @@ class SpotsController < ApplicationController
 
 	def edit
 		@spot = Spot.find(params[:id])
+	end
+
+	def join
+		@spots = Spot.where('spots.status IS NOT 1')
+	end
+
+	def completed
+		@spots = Spot.where('spots.status IS 1')
 	end
 
 	def update
