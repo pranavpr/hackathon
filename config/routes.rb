@@ -5,6 +5,8 @@ Hackathon::Application.routes.draw do
   match '/plan',    to: 'spots#new',    via: 'get'
   match '/join',    to: 'spots#join',    via: 'get'
   match '/completed',    to: 'spots#completed',    via: 'get'
+  match '/spots/:id/join',    to: 'spots#joinspot',    via: 'get'
+  match '/spots/:id/report',    to: 'spots#reportspot',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
