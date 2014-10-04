@@ -1,0 +1,1 @@
+update spots set status = 0 where status is null;

@@ -24,6 +24,7 @@
       <div id='newspotform'>
           <%= f.hidden_field :lat %>
           <%= f.hidden_field :lng %>
+          <%= f.hidden_field :status, :value => 1 %>
           <div class="l-box">
           <%= f.text_area :address, :class => 'pure-input-1', :placeholder => 'Address' %>
           </div>

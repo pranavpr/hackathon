@@ -5,7 +5,7 @@ class SpotsController < ApplicationController
 	end
 
 	def report
-		@spots = Spot.where.not(status: 1)
+		@spots = Spot.where(status: 0)
 	end
 
 	def show
@@ -17,7 +17,7 @@ class SpotsController < ApplicationController
 	end
 
 	def join
-		@spots = Spot.where.not(status: 1)
+		@spots = Spot.where(status: 0)
 	end
 
 	def completed
