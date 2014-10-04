@@ -1,76 +1,38 @@
-<% provide(:title, 'Join') %>
-<% provide(:subtitle, 'Select red marker to join the spot') %>
+<% provide(:title, 'The Ugly Indian') %>
+<% provide(:subtitle, 'Is there any hope?') %>
+<div class="header">
+  <h1><%= yield(:title) %></h1>
+  <h2><%= yield(:subtitle) %></h2>
+</div>
 <div class="content">
-<div class="mapoverlay">
-  <div id='info'>
-  <div class="info alert-dismissible">
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-    Select red marker to join the spot
+  <div class="textcontent">
+    <p>
+      <blockquote>It’s time we admitted that many of India’s problems are because many of us are Ugly Indians.
+      </blockquote>
+      Look at any Indian street, we have pathetic civic standards.
+We tolerate an incredible amount of filth.
+This is not about money, knowhow, or systems.
+This is about attitudes. About a rooted cultural behaviour.
+The Ugly Indian can take the world's best systems
+and find a way around it. Even outside India.
+Streets in Indian-dominated suburbs overseas 
+are good indicators of this lack of civic sense. 
+Ask those who have visited Southall (London), 
+Edison (New Jersey) and Little India (Singapore).
+      <p>It’s time for us Ugly Indians to do something about this.
+Only we can save us, from ourselves.</p>
+    </p>
+    <h2 class="content-subhead">Are you an Ugly Indian?</h2>
+    <p>
+    Would you like to make a change in your surroundings ?
+Write to us. Some of our learnings may be of use. You can take that first step today.
+Is your street clean? Do you think we are being bit harsh on ourselves? Please send us some photos of your street and we will gladly publish them here!</p><p>
+Do you want to contribute your specialist skills ? 
+Architects, designers, civil engineers, landscape artists, wall painters - your city needs you!
+We were inspired by the War on Litter Institute. Read their WOLPapers. We have contributed a few WOLPapers already!</p>
+<p>It is a small beginning, but we see hope. Do you ? Tell us at <code>theuglyindian@gmail.com</code>, or post on our (clean) wall at Facebook.
+<blockquote>There is hope. The Ugly Indian is not that ugly after all. 
+</blockquote> 
+</p>
   </div>
-  </div>
-  </div>
-  <div id="map-all">
-  </div>
-  <script>
-  var marker;
-  var markers = new Array();
-  var infowindow = null;
-  var map;
-  if (navigator.geolocation) {
-  	navigator.geolocation.getCurrentPosition(function(position) {
-  		initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  		var mapOptions = {
-  			center: initialLocation,
-  			zoom: 16,
-        zoomControl: true,
-                zoomControlOptions: {
-                  style: google.maps.ZoomControlStyle.DEFAULT,
-                  position: google.maps.ControlPosition.TOP_RIGHT
-                },
-                streetViewControl: false,
-                mapTypeControl: true,
-                panControl: false,
-                rotateControl: false,
-                scaleControl: false,
-                overviewMapControl: false
-  		};
-  		map = new google.maps.Map(document.getElementById('map-all'), mapOptions); 
-  		<% @spots.each do |	spot | %>
-  			marker = new google.maps.Marker({
-  				position: new google.maps.LatLng( <%= spot.lat %> , <%= spot.lng %> ),
-  				address: '<%= spot.address %>',
-  				id: '<%= spot.id %>',
-          icon: '<%= asset_path spot.status == 1 ? 'flag-g.png' : 'flag-r.png' %>',
-          photo: '<%= spot.photo %>',
-          status: '<%= spot.status %>',
-  				map: map
-  			});
-  		markers.push(marker); 
-  		<% end %>
-  		var bounds = new google.maps.LatLngBounds ();
-      var infowindow = new google.maps.InfoWindow(
-      {
-        maxWidth: 300
-      });
-  		for (var i = 0; i < markers.length; i++) {
-  			var marker = markers[i];
-  			bounds.extend(marker.position);
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          var buttontext = (this.status == 1) ? 'View this spot' : 'Join this spot';
-          infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='" + this.photo + "'><br/><a class='pure-button pure-button-primary' href='/spots/" + this.id + "'>"+ buttontext +"</a></div></div><div class='pure-u-1-2'><div class='l-box'>" + this.address + "</div></div></div>");
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-  			map.fitBounds(bounds);
-  		}
-      //Resize Function
-    google.maps.event.addDomListener(window, "resize", function() {
-      var center = map.getCenter();
-      google.maps.event.trigger(map, "resize");
-      map.setCenter(center);
-    });
-  	});
-  }
-  </script>
 </div>

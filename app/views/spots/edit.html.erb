@@ -59,7 +59,7 @@ marker = new google.maps.Marker({
     position: new google.maps.LatLng( <%= @spot.lat %> , <%= @spot.lng %> ),
     address: '<%= @spot.address %>',
     id: '<%= @spot.id %>',
-    icon: '<%= asset_path @spot.status == 1 ? "flag-g.png" : "flag-r.png" %>',
+    icon: '<%= asset_path @spot.status == 1 ? "flag-g.png" : "flag-o.png" %>',
     map: map
 });
 map.setCenter(marker.position);

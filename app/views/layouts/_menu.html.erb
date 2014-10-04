@@ -2,9 +2,11 @@
         <div class="pure-menu pure-menu-open">
             <%= link_to "India Rising", root_path, :class => "pure-menu-heading" %>
             <ul>
-                <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(root_path) %>"><%= link_to '<i class="fa fa-users"></i>&nbsp;Join'.html_safe, root_path %></li>
+                <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(root_path) %>"><%= link_to '<i class="fa fa-home"></i>&nbsp;Home'.html_safe, root_path %></li>
+                <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(join_path) %>"><%= link_to '<i class="fa fa-users"></i>&nbsp;Join'.html_safe, join_path %></li>
                 <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(plan_path) %>"><%= link_to '<i class="fa fa-location-arrow"></i>&nbsp;Plan'.html_safe, plan_path %></li>
                 <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(report_path) %>"><%= link_to '<i class="fa fa-pencil"></i>&nbsp;Report'.html_safe, report_path %></li>
+                <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(completed_path) %>"><%= link_to '<i class="fa fa-thumbs-up"></i>&nbsp;Completed'.html_safe, completed_path %></li>
             </ul>
         </div>
     </div>
