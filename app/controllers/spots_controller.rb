@@ -1,4 +1,5 @@
 class SpotsController < ApplicationController
+	before_filter :authenticate_user!, only: [:new, :reportspot, :report, :joinspot, :update, :create]
 
 	def index
 		@spots = Spot.all
@@ -43,7 +44,7 @@ class SpotsController < ApplicationController
 	end
 
 	def create
-		@spot = Spot.new(spot_params)    # Not the final implementation!
+		@spot = Spot.new(spot_params)
 		if @spot.save
 			flash[:success] = "Spot submitted sucessfully"
 			redirect_to @spot

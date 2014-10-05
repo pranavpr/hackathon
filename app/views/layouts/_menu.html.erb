@@ -7,6 +7,12 @@
                 <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(plan_path) %>"><%= link_to '<i class="fa fa-location-arrow"></i>&nbsp;Plan'.html_safe, plan_path %></li>
                 <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(report_path) %>"><%= link_to '<i class="fa fa-pencil"></i>&nbsp;Report'.html_safe, report_path %></li>
                 <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(completed_path) %>"><%= link_to '<i class="fa fa-thumbs-up"></i>&nbsp;Completed'.html_safe, completed_path %></li>
+                <% if user_signed_in? %>
+                <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(destroy_user_session_path) %>"><%= link_to '<i class="fa fa-unlock-alt"></i></i>&nbsp;Log out'.html_safe, destroy_user_session_path, :method => :delete %></li>
+                <% else %>
+                <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(new_user_registration_path) %>"><%= link_to '<i class="fa fa-pencil-square-o"></i></i>&nbsp;Sign up'.html_safe, new_user_registration_path %></li>
+                <li class="<%= 'menu-item-divided pure-menu-selected' if current_page?(new_user_session_path) %>"><%= link_to '<i class="fa fa-lock"></i></i>&nbsp;Log in'.html_safe, new_user_session_path %></li>
+                <% end %>
             </ul>
         </div>
     </div>

@@ -18,6 +18,11 @@ gem 'bcrypt', '3.1.7'
 gem 'paperclip', '4.2.0'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '4.2.0'
+gem 'devise', '~> 3.4.0'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-twitter', '~> 1.0.1'
+gem 'omniauth-facebook', '~> 2.0.0'
+gem 'figaro', '~> 1.0.0'
 
 group :production do
   gem 'pg', '0.17.1'

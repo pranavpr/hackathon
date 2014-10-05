@@ -26,4 +26,21 @@ Hackathon::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # Auth
+  # General Settings
+  config.app_domain = ENV["APP_DOMAIN"]
+  # Email
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: config.app_domain }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com', 
+    port: '587',
+    enable_starttls_auto: true,
+    user_name: ENV["SENDER_EMAIL_ID"],
+    password: ENV["SENDER_EMAIL_PWD"],
+    authentication: :plain,
+    domain: ENV["APP_DOMAIN"]
+  }
 end
