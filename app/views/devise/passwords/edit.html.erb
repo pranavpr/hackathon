@@ -1,0 +1,25 @@
+<% provide(:title, 'The Ugly Indian') %>
+<% provide(:subtitle, 'Change your password') %>
+<div class="header">
+  <h1><%= yield(:title) %></h1>
+  <h2><%= yield(:subtitle) %></h2>
+</div>
+<div class="content">
+  <div class="textcontent">
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'pure-form pure-form-stacked', id: 'top-form' }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <%= f.label :password, "New password" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+
+  <%= f.label :password_confirmation, "Confirm new password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+  <%= f.submit "Change my password", :class => 'pure-button pure-button-primary' %>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+</div>

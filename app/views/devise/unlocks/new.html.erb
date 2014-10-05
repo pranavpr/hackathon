@@ -1,0 +1,21 @@
+<% provide(:title, 'The Ugly Indian') %>
+<% provide(:subtitle, 'Resend unlock instructions') %>
+<div class="header">
+  <h1><%= yield(:title) %></h1>
+  <h2><%= yield(:subtitle) %></h2>
+</div>
+<div class="content">
+  <div class="textcontent">
+
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, , class: 'pure-form pure-form-stacked', id: 'top-form' }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, autofocus: true %>
+
+  <%= f.submit "Resend unlock instructions", :class => 'pure-button pure-button-primary' %>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+</div>

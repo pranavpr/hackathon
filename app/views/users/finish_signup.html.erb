@@ -1,0 +1,31 @@
+<% provide(:title, 'The Ugly Indian') %>
+<% provide(:subtitle, 'Confirm email') %>
+<div class="header">
+  <h1><%= yield(:title) %></h1>
+  <h2><%= yield(:subtitle) %></h2>
+</div>
+<div class="content">
+  <div class="textcontent">
+  <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { :class => 'pure-form pure-form-stacked', :id => 'top-form' }) do |f| %>
+  <% if current_user.errors.any? %>
+      <div id="error_explanation" class="error alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+      <div >
+      The form contains <%= pluralize(current_user.errors.count, "error") %>.
+    </div>
+    <ul>
+        <% current_user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+    <fieldset>
+      <%= f.label :email %>
+        <%= f.text_field :email, :autofocus => true, :value => '', placeholder: 'Example: email@me.com' %>
+        <p class="help-block">Please confirm your email address. No spam.</p>
+      <%= f.submit 'Continue', :class => 'pure-button pure-button-primary' %>
+      </fieldset>
+  <% end %>
+</div>
+</div>
