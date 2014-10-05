@@ -25,7 +25,7 @@
                     </li>
                 </ul>
                 <button class="button-choose pure-button" id='u_join' <%= @spot.status == 1 ? 'disabled' : '' %> ><i class="fa fa-check-circle"></i>&nbsp;Join</button>
-                <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, root_path, class: "button-choose pure-button" %>
+                <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, join_path, class: "button-choose pure-button" %>
             </div>
         </div>
     </div>

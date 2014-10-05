@@ -5,9 +5,6 @@ This applicaton is being developed as part of hackathon organized by [The Ugly I
 
 ###Requirements
 
-
-- You can build either a mobile or a web application. There are no restrictions on the platform you can build. All we care about is that whatever you build works, is easy to use and has the potential to have mass appeal.
-
 The primary functional requirements for the app include
 - **Planning a spot fix** | Any person who is interested to do a spot fix should be able to upload a photo, location and description of the spot along with a planned date she or he intends to fix it on.
 - **Joining a spot fix** | Any person should be able to browse through planned spot fixes in their vicinity and be able to join the spotfix and share the fix across social media.
@@ -27,18 +24,26 @@ The latest build is running live at http://indiarising.herokuapp.com/
 
 ###Screenshots
 
-![Join spot fix](http://i.imgur.com/H41jrDu.png)
+![Home](http://i.imgur.com/2dXWbHX.png)
 
-![Plan spot fix](http://i.imgur.com/TFRjbTx.png)
+![Join spot fix](http://i.imgur.com/TnAORB3.png)
 
-![Report spot fix](http://i.imgur.com/jqK1bQ3.png)
+![Join spot fix](http://i.imgur.com/jarOsZ9.png)
 
-![Report spot fix](http://i.imgur.com/haYFJEW.png)
+![Plan spot fix](http://i.imgur.com/Hei2QLA.png)
+
+![Report spot fix](http://i.imgur.com/hybytrj.png)
+
+![Report spot fix](http://i.imgur.com/bGyHKx5.png)
+
+![Completed spot fix](http://i.imgur.com/Bhm9vMp.png)
 
 ###To Do
 
 - User register and login via Facebook, Twitter <em>etc.</em>
+- Spot sharing on Facebook, Twitter <em>etc.</em>
 - Join a spot fix
+- Dashboard using `raphael.js`
 - Improve UI and UE
 
 ###Epilogue
