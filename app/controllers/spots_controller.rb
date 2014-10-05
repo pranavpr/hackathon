@@ -12,12 +12,16 @@ class SpotsController < ApplicationController
 		@spot = Spot.find(params[:id])
 	end
 
-	def edit
+	def reportspot
 		@spot = Spot.find(params[:id])
 	end
 
 	def join
 		@spots = Spot.where(status: 0)
+	end
+
+	def joinspot
+		@spot = Spot.find(params[:id])
 	end
 
 	def completed
