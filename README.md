@@ -17,12 +17,25 @@ The primary functional requirements for the app include
 - **Joining a spot fix** \- Work in progress
 - **Reporting a spot fix** \- Users can report a hot fix. They can submit after poto and description.
 - **Map based dashboard** \- Users can see the all the spot fixes. `Green` markers on map represent completed spots and `Red` markers represent upcoming spots.
+- **User management** \- Users can sign up or login via Facebook and Twitter.
 
 ###Demo
 
 The latest build is running live at http://indiarising.herokuapp.com/
 
 ###Screenshots
+
+####Mobile
+
+![Home](http://i.imgur.com/Tyu7VsO.png) ![Navigation](http://i.imgur.com/wg9rIDl.png)
+
+![Join spot fix](http://i.imgur.com/PmrCBEQ.png) ![Plan spot fix](http://i.imgur.com/KuzRIaO.png)
+
+![Plan spot fix](http://i.imgur.com/uyc0ep0.png) ![Plan spot fix](http://i.imgur.com/pzszBl3.png)
+
+![Join spot fix](http://i.imgur.com/1nZE54f.png) ![Completed spot fix](http://i.imgur.com/Wn7J28L.png)
+
+####Desktop
 
 ![Home](http://i.imgur.com/2dXWbHX.png)
 
@@ -40,7 +53,6 @@ The latest build is running live at http://indiarising.herokuapp.com/
 
 ###To Do
 
-- User register and login via Facebook, Twitter <em>etc.</em>
 - Spot sharing on Facebook, Twitter <em>etc.</em>
 - Join a spot fix
 - Dashboard using `raphael.js`
