@@ -184,6 +184,12 @@ appears on the left side of the page. */
     margin-top: 0;
     padding: 0.5em 0.8em;
 }
+
+#menu .pure-menu-user {
+    margin-top: 0;
+    padding: 0.5em 0.8em;
+}
+
 #menu .pure-menu-heading:hover, #menu .pure-menu-heading:focus {
     color: #999;
 }
@@ -452,4 +458,12 @@ border-radius: 0px 3px 3px 0px;
 color: #f4f4f4;
 cursor: pointer;
 width: 150px;
+}
+
+.welcometext {
+    padding-left: 0.5em;
+    .usrnm
+    {
+        color: #fff;
+    }
 }
