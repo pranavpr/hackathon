@@ -14,6 +14,7 @@
       <p>
         It’s time for us Ugly Indians to do something about this. Only we can save us, from ourselves.
       </p>
+      <a class="pure-button pure-button-primary" onclick="tour.start();">Show me how</a>
     </p>
     <h2 class="content-subhead">Are you an Ugly Indian?</h2>
     <p>
@@ -29,3 +30,38 @@
     </p>
   </div>
 </div>
+<script>
+// Instance the tour
+var tour = new Tour({
+  storage: false,
+  steps: [
+  {
+    element: "#signup",
+    title: "Signup",
+    content: "Signup to create and report spots"
+  },
+  {
+    element: "#plan",
+    title: "Plan",
+    content: "Create a new spot you want to fix"
+  },
+  {
+    element: "#join",
+    title: "Join",
+    content: "Join a spot fix near you"
+  },
+  {
+    element: "#report",
+    title: "Report",
+    content: "Report about a completed spot fix"
+  },
+  {
+    element: "#completed",
+    title: "Completed",
+    content: "View completed spot fixes in the past"
+  }
+]});
+
+// Initialize the tour
+tour.init();
+</script>
