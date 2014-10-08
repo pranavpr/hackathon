@@ -6,6 +6,7 @@
 </div>
 <div class="content">
   <div class="textcontent">
+<div class="formcontent">
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => 'pure-form pure-form-stacked', :id => 'top-form' }) do |f| %>
  <%= devise_error_messages! %>
@@ -17,7 +18,7 @@
     <%= f.password_field :password, autocomplete: "off" %>
 
   <% if devise_mapping.rememberable? %>
-    <%= f.check_box :remember_me, :class => 'pure-checkbox' %><%= f.label :remember_me %>
+    <%= f.label :remember_me , :class => 'pure-checkbox' do %> <%= f.check_box :remember_me %> Remember me <% end %>
   <% end %>
 
  <%= f.submit "Log in", :class => 'pure-button pure-button-primary' %>
@@ -25,5 +26,6 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
 </div>
 </div>

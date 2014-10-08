@@ -1,6 +1,6 @@
 class SpotsController < ApplicationController
-	before_filter :authenticate_user!, only: [:new, :reportspot, :report, :joinspot, :update, :create]
-	before_filter :ensure_signup_complete, only: [:new, :reportspot, :report, :joinspot, :update, :create]
+	before_filter :authenticate_user!, only: [:new, :reportspot, :joinspot, :update, :create]
+	before_filter :ensure_signup_complete, only: [:new, :reportspot, :joinspot, :update, :create]
 
 	def index
 		@spots = Spot.all
