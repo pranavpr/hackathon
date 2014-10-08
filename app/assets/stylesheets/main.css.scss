@@ -184,12 +184,10 @@ appears on the left side of the page. */
     margin-top: 0;
     padding: 0.5em 0.8em;
 }
-
 #menu .pure-menu-user {
     margin-top: 0;
     padding: 0.5em 0.8em;
 }
-
 #menu .pure-menu-heading:hover, #menu .pure-menu-heading:focus {
     color: #999;
 }
@@ -223,8 +221,9 @@ appears on the left side of the page. */
     padding-top: 1em;
 }
 .u-search-btn {
-        padding-top: 0.5em;
+    padding-top: 0.5em;
 }
+
 /* -- Responsive Styles (Media Queries) ------------------------------------- */
 /* Hides the menu at `48em`, but modify this based on your app's needs. */
 
@@ -308,7 +307,6 @@ appears on the left side of the page. */
 .l-box {
     padding: 0.25em;
 }
-
 .spot-infos {
     position: absolute;
     right: 0px;
@@ -317,8 +315,7 @@ appears on the left side of the page. */
     text-align: center;
     padding: 2em;
     z-index: 5;
- }
-
+}
 .spot-info {
     border: 1px solid #ddd;
     margin: 0 0.5em 2em;
@@ -331,15 +328,13 @@ appears on the left side of the page. */
     padding: 0;
     text-align: center;
 }
-
 .spot-info-list li {
     padding: 0.8em 0.8em;
     background: #f7f7f7;
     border-bottom: 1px solid #e7e7e7;
 }
-
-.spot-u{
-    padding-right:0.8em;
+.spot-u {
+    padding-right: 0.8em;
     padding-left: 0.8em;
     padding-top: 0.8em;
 }
@@ -353,117 +348,112 @@ appears on the left side of the page. */
     bottom: -1.5em;
 }
 .progress {
-  overflow: hidden;
-  height: 20px;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 20px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 .progress-bar {
-  float: left;
-  width: 0%;
-  height: 100%;
-  font-size: 12px;
-  line-height: 20px;
-  color: #ffffff;
-  text-align: center;
-  background-color: #1f8dd6;
-  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-  -webkit-transition: width 0.6s ease;
-  -o-transition: width 0.6s ease;
-  transition: width 0.6s ease;
+    float: left;
+    width: 0%;
+    height: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #1f8dd6;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    -webkit-transition: width 0.6s ease;
+    -o-transition: width 0.6s ease;
+    transition: width 0.6s ease;
 }
-
 .message {
-margin-bottom: 1rem;
-padding: 1em;
-color: #717171;
-background-color: #f9f9f9;
+    margin-bottom: 1rem;
+    padding: 1em;
+    color: #717171;
+    background-color: #f9f9f9;
 }
-
 blockquote {
-  background: #f9f9f9;
-  border-left: 10px solid #ccc;
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
-  quotes: "\201C""\201D""\2018""\2019";
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-  content:"\201C";
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+    content: "\201C";
 }
 blockquote:after {
-  color: #ccc;
-  content: close-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-left: 0.25em;
-  vertical-align: -0.4em;
-  content:"\201D";
+    color: #ccc;
+    content: close-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-left: 0.25em;
+    vertical-align: -0.4em;
+    content: "\201D";
 }
 blockquote p {
-  display: inline;
+    display: inline;
 }
-
 .facebook-before {
-background-color: #0064ab;
-border-radius: 3px 0px 0px 3px;
--moz-border-radius: 3px 0px 0px 3px;
--webkit-border-radius: 3px 0px 0px 3px;
-color: #f4f4f4;
-display: block;
-float: left;
-height: 34px;
-line-height: 34px;
-text-align: center;
-width: 34px;
+    background-color: #0064ab;
+    border-radius: 3px 0px 0px 3px;
+    -moz-border-radius: 3px 0px 0px 3px;
+    -webkit-border-radius: 3px 0px 0px 3px;
+    color: #f4f4f4;
+    display: block;
+    float: left;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    width: 34px;
 }
 .facebook {
-background-color: #0079ce;
-border: none;
-border-radius: 0px 3px 3px 0px;
--moz-border-radius: 0px 3px 3px 0px;
--webkit-border-radius: 0px 3px 3px 0px;
-color: #f4f4f4;
-cursor: pointer;
-width: 150px;
+    background-color: #0079ce;
+    border: none;
+    border-radius: 0px 3px 3px 0px;
+    -moz-border-radius: 0px 3px 3px 0px;
+    -webkit-border-radius: 0px 3px 3px 0px;
+    color: #f4f4f4;
+    cursor: pointer;
+    width: 150px;
 }
 .twitter-before {
-background-color: #189bcb;
-border-radius: 3px 0px 0px 3px;
--moz-border-radius: 3px 0px 0px 3px;
--webkit-border-radius: 3px 0px 0px 3px;
-color: #f4f4f4;
-display: block;
-float: left;
-height: 34px;
-line-height: 34px;
-text-align: center;
-width: 34px;
+    background-color: #189bcb;
+    border-radius: 3px 0px 0px 3px;
+    -moz-border-radius: 3px 0px 0px 3px;
+    -webkit-border-radius: 3px 0px 0px 3px;
+    color: #f4f4f4;
+    display: block;
+    float: left;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    width: 34px;
 }
 .twitter {
-background-color: #1bb2e9;
-border: none;
-border-radius: 0px 3px 3px 0px;
--moz-border-radius: 0px 3px 3px 0px;
--webkit-border-radius: 0px 3px 3px 0px;
-color: #f4f4f4;
-cursor: pointer;
-width: 150px;
+    background-color: #1bb2e9;
+    border: none;
+    border-radius: 0px 3px 3px 0px;
+    -moz-border-radius: 0px 3px 3px 0px;
+    -webkit-border-radius: 0px 3px 3px 0px;
+    color: #f4f4f4;
+    cursor: pointer;
+    width: 150px;
 }
-
 .welcometext {
     padding-left: 0.5em;
-    .usrnm
-    {
+    .usrnm {
         color: #fff;
     }
 }

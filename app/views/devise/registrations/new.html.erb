@@ -6,24 +6,20 @@
 </div>
 <div class="content">
   <div class="textcontent">
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => 'pure-form pure-form-stacked' }) do |f| %>
-  <%= devise_error_messages! %>
-<%= f.label :name %>
-  <%= f.email_field :name, autofocus: true %>
-
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :password do%>Password <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><% end %>
-    <%= f.password_field :password, autocomplete: "off" %>
-
-  <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-
-  <%= f.submit "Sign up", :class => 'pure-button pure-button-primary' %>
-<% end %>
-
-<%= render "devise/shared/links" %>
-</div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => 'pure-form pure-form-stacked' }) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true %>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      <%= f.label :password do%>Password
+        <% if @validatable %><i>(<%= @minimum_password_length %>
+            characters minimum)</i><% end %><% end %>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <%= f.submit "Sign up", :class => 'pure-button pure-button-primary' %>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
 </div>

@@ -22,7 +22,7 @@
       <% end %>
     <fieldset>
       <%= f.label :email %>
-        <%= f.text_field :email, :autofocus => true, :value => '', placeholder: 'Example: email@me.com' %>
+        <%= f.email_field :email, :autofocus => true, :value => '', placeholder: 'Example: email@me.com' %>
         <p class="help-block">Please confirm your email address. No spam.</p>
       <%= f.submit 'Continue', :class => 'pure-button pure-button-primary' %>
       </fieldset>
