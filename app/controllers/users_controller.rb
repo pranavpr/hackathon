@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
-    # authorize! :update, @user 
+    # authorize! :update, @user
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
         @user.skip_reconfirmation!
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   private
     def set_user
       @user = User.find(params[:id])
