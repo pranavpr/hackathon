@@ -2,6 +2,7 @@
 <% provide(:subtitle, 'Search for an address or drag the marker on map to propose a spot') %>
 <div class="content">
 <div class="mapoverlay">
+  <%= render 'shared/messages' %>
   <%= form_for(@spot, :html => {:class => 'pure-form', :id => 'top-form'}) do |f| %>
   <div id='u_flash'>
   <div class="info alert-dismissible" id='instruction'>

@@ -200,11 +200,14 @@ appears on the left side of the page. */
 #menu li.pure-menu-selected a:hover, #menu li.pure-menu-selected a:focus {
     background: none;
 }
-#top-form, #info {
+#top-form, #info, #flash {
     position: relative;
     z-index: 5; /* The z-index should be higher than Google Maps */
     margin: 0px auto 0;
     height: auto;
+}
+#flash {
+  max-width: 600px;
 }
 #map-canvas, #map-all, #map-canvas-edit {
     height: 100%;
@@ -212,7 +215,7 @@ appears on the left side of the page. */
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
+    z-index: -0; /* Set z-index to 0 as it will be on a layer below */
 }
 .mapoverlay {
     max-width: 80%;
@@ -267,7 +270,7 @@ appears on the left side of the page. */
     background-repeat: no-repeat;
     background-position: 10px center;
 }
-.info {
+.info, {
     background-color: #d9edf7;
     border-color: #bce8f1;
     color: #31708f;

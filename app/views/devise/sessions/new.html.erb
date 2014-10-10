@@ -1,11 +1,12 @@
 <% provide(:title, 'The Ugly Indian') %>
-<% provide(:subtitle, 'Log in') %>
+<% provide(:subtitle, 'Sign in') %>
 <div class="header">
   <h1><%= yield(:title) %></h1>
   <h2><%= yield(:subtitle) %></h2>
 </div>
 <div class="content">
   <div class="textcontent">
+    <%= render 'shared/messages' %>
 <div class="formcontent">
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => 'pure-form pure-form-stacked', :id => 'top-form' }) do |f| %>

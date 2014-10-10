@@ -6,7 +6,7 @@
 </div>
 <div class="content">
   <div class="textcontent">
-
+<%= render 'shared/messages' %>
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'pure-form pure-form-stacked', id: 'top-form'}) do |f| %>
   <%= devise_error_messages! %>
 
