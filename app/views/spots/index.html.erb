@@ -14,7 +14,7 @@
       <p>
         It’s time for us Ugly Indians to do something about this. Only we can save us, from ourselves.
       </p>
-      <a class="pure-button pure-button-primary" onclick="tour.restart();">Show me how</a>
+      <a class="pure-button pure-button-primary" onclick="tour.restart();"><i class="fa fa-play"></i>&nbsp;Show me how</a>
     </p>
     <h2 class="content-subhead">Are you an Ugly Indian?</h2>
     <p>
@@ -23,7 +23,8 @@
     <p>
       Do you want to contribute your specialist skills ? Architects, designers, civil engineers, landscape artists, wall painters - your city needs you! We were inspired by the War on Litter Institute. Read their WOLPapers. We have contributed a few WOLPapers already!
     </p>
-    <p>It is a small beginning, but we see hope. Do you ? Tell us at <code>theuglyindian@gmail.com</code>, or post on our (clean) wall at Facebook.
+    <p>It is a small beginning, but we see hope. Do you ? Tell us at
+      <code>theuglyindian@gmail.com</code>, or post on our (clean) wall at Facebook.
       <blockquote>
         There is hope. The Ugly Indian is not that ugly after all.
       </blockquote>
@@ -31,37 +32,37 @@
   </div>
 </div>
 <script>
-// Instance the tour
-var tour = new Tour({
-  storage: false,
-  steps: [
-  {
-    element: "#signup",
-    title: "Signup",
-    content: "Signup to create and report spot fixes"
-  },
-  {
-    element: "#plan",
-    title: "Plan",
-    content: "Submit a new spot you want to fix"
-  },
-  {
-    element: "#join",
-    title: "Join",
-    content: "Join a spot fix near you"
-  },
-  {
-    element: "#report",
-    title: "Report",
-    content: "Report about a completed spot fix"
-  },
-  {
-    element: "#completed",
-    title: "Completed",
-    content: "View completed spot fixes in the past"
-  }
-]});
+  // Instance the tour
+  var tour = new Tour({
+    storage: false,
+    steps: [
+    {
+      element: "#signup",
+      title: "Signup",
+      content: "Signup to create and report spot fixes"
+    },
+    {
+      element: "#plan",
+      title: "Plan",
+      content: "Submit a new spot you want to fix"
+    },
+    {
+      element: "#join",
+      title: "Join",
+      content: "Join a spot fix near you"
+    },
+    {
+      element: "#report",
+      title: "Report",
+      content: "Report about a completed spot fix"
+    },
+    {
+      element: "#completed",
+      title: "Completed",
+      content: "View completed spot fixes in the past"
+    }
+  ]});
 
-// Initialize the tour
-tour.init();
+  // Initialize the tour
+  tour.init();
 </script>
