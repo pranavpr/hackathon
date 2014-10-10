@@ -215,7 +215,7 @@ appears on the left side of the page. */
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -0; /* Set z-index to 0 as it will be on a layer below */
+    z-index: 0; /* Set z-index to 0 as it will be on a layer below */
 }
 .mapoverlay {
     max-width: 80%;
@@ -270,7 +270,7 @@ appears on the left side of the page. */
     background-repeat: no-repeat;
     background-position: 10px center;
 }
-.info, {
+.info {
     background-color: #d9edf7;
     border-color: #bce8f1;
     color: #31708f;
