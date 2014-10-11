@@ -3,7 +3,7 @@
 <div class="content">
   <div class="mapoverlay">
     <%= @spot.status == 1 ? '<div class="warning alert-dismissible"  id="info">
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
     Spot already reported
   </div>'.html_safe : '' %>
     <%= render 'shared/messages' %>

@@ -1,182 +1,182 @@
 <% provide(:title, 'Plan') %>
 <% provide(:subtitle, 'Search for an address or drag the marker on map to propose a spot') %>
 <div class="content">
-<div class="mapoverlay">
-  <%= render 'shared/messages' %>
-  <%= form_for(@spot, :html => {:class => 'pure-form', :id => 'top-form'}) do |f| %>
-  <div id='u_flash'>
-  <div class="info alert-dismissible" id='instruction'>
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-    Search for an address or drag the marker on map to propose a spot
-  </div>
-  <%= render 'shared/error_messages' %>
-  </div>
-    <fieldset>
-      <div class='pure-g' id='u-form'>
-      <div class="pure-u-1 pure-u-md-7-8">
-          <input class="pure-input-1" type="text" placeholder="Address" id="q_address">
+  <div class="mapoverlay">
+    <%= render 'shared/messages' %>
+    <%= form_for(@spot, :html => {:class => 'pure-form', :id => 'top-form'}) do |f| %>
+      <div id='u_flash'>
+        <div class="info alert-dismissible" id='instruction'>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+          Search for an address or drag the marker on map to propose a spot
+        </div>
+        <%= render 'shared/error_messages' %>
+      </div>
+      <fieldset>
+        <div class='pure-g' id='u-form'>
+          <div class="pure-u-1 pure-u-md-7-8">
+            <input class="pure-input-1" type="text" placeholder="Address" id="q_address">
           </div>
           <div class="pure-u-1 pure-u-md-1-8">
-          <div class="u-search-btn">
-          <button class="pure-button pure-button-primary" id="u_search"><i class="fa fa-search"></i>&nbsp;Search</button>
+            <div class="u-search-btn">
+              <button class="pure-button pure-button-primary" id="u_search"><i class="fa fa-search"></i>&nbsp;Search</button>
+            </div>
           </div>
-          </div>
-      </div>
-      <div id='newspotform'>
+        </div>
+        <div id='newspotform'>
           <%= f.hidden_field :lat %>
           <%= f.hidden_field :lng %>
           <%= f.hidden_field :status, :value => 0 %>
           <div class="l-box">
-          <%= f.text_area :address, :class => 'pure-input-1', :placeholder => 'Address' %>
+            <%= f.text_area :address, :class => 'pure-input-1', :placeholder => 'Address' %>
           </div>
           <div class="l-box">
-          <%= f.url_field :photo, :class => 'pure-input-1', :placeholder => 'Photo URL' %>
+            <%= f.url_field :photo, :class => 'pure-input-1', :placeholder => 'Photo URL' %>
           </div>
           <div class="l-box">
-          <%= f.text_area :description, :class => 'pure-input-1', :placeholder => 'Description' %>
+            <%= f.text_area :description, :class => 'pure-input-1', :placeholder => 'Description' %>
           </div>
           <div class="l-box">
-          <%= f.date_field :date, :class => 'pure-input-1', :placeholder => 'dd/mm/yyyy' %>
+            <%= f.date_field :date, :class => 'pure-input-1', :placeholder => 'dd/mm/yyyy' %>
           </div>
           <div class="l-box">
-          <%= f.button'<i class="fa fa-check-circle"></i>&nbsp;Submit'.html_safe, class: "pure-button pure-button-primary", id: "submit" %>
-          <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, plan_path, class: "pure-button button-error" %>
+            <%= f.button'<i class="fa fa-check-circle"></i>&nbsp;Submit'.html_safe, class: "pure-button pure-button-primary", id: "submit" %>
+            <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, plan_path, class: "pure-button button-error" %>
           </div>
-      </div>
-    </fieldset>
-  <% end %>
+        </div>
+      </fieldset>
+    <% end %>
   </div>
   <div id="map-canvas">
   </div>
 </div>
 <script>
-/* Global variables */
-var ready;
-var map;
-var geocoder;
-var marker;
+  /* Global variables */
+  var ready;
+  var map;
+  var geocoder;
+  var marker;
 
-/* Initialize Menu and Map */
-/* Map Initialize */
-function initialize() {
-    /* Center map on client's Geolocation */
-    if ($("#error_explanation").length) {
-        $("#newspotform").show();
-        $("#u-form").hide();
-        $("#instruction").hide();
-    } else {
-        $("#newspotform").hide();
-    }
-    //$("#instruction").hide();
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            var mapOptions = {
-                center: initialLocation,
-                zoom: 16,
-                zoomControl: true,
-                zoomControlOptions: {
-                    style: google.maps.ZoomControlStyle.DEFAULT,
-                    position: google.maps.ControlPosition.TOP_RIGHT
-                },
-                streetViewControl: false,
-                mapTypeControl: true,
-                panControl: false,
-                rotateControl: false,
-                scaleControl: false,
-                overviewMapControl: false
-            };
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            marker = new google.maps.Marker({
-                position: initialLocation,
-                map: map,
-                draggable: true,
-                icon: '<%= asset_path 'flag-r.png' %>'
-            });
-            if ($("#error_explanation").length) {
-                marker.setMap(null);
-                markerpos = new google.maps.LatLng($('#spot_lat').val(), $('#spot_lng').val());
-                marker = new google.maps.Marker({
-                    position: markerpos,
-                    map: map,
-                    draggable: false,
-                    icon: '<%= asset_path 'flag-b.png' %>'
-                });
-                map.setCenter(markerpos);
-            }
-            google.maps.event.addListener(marker, 'dragend', function() {
-                geocodePosition(marker.getPosition());
-                map.panTo(marker.getPosition());
-                map.setZoom(16);
-                $("#u_flash").html('<div class="warning alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-              if ($("#q_address").val().length != 0){
-                $("#newspotform").show();
-                $("#u-form").hide();
-                $("#instruction").hide();
-                marker.setIcon('<%= asset_path 'flag-b.png' %>');
-                marker.setOptions({
-                    draggable: false
-                });
+  /* Initialize Menu and Map */
+  /* Map Initialize */
+  function initialize() {
+      /* Center map on client's Geolocation */
+      if ($("#error_explanation").length) {
+          $("#newspotform").show();
+          $("#u-form").hide();
+          $("#instruction").hide();
+      } else {
+          $("#newspotform").hide();
+      }
+      //$("#instruction").hide();
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+              initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+              var mapOptions = {
+                  center: initialLocation,
+                  zoom: 16,
+                  zoomControl: true,
+                  zoomControlOptions: {
+                      style: google.maps.ZoomControlStyle.DEFAULT,
+                      position: google.maps.ControlPosition.TOP_RIGHT
+                  },
+                  streetViewControl: false,
+                  mapTypeControl: true,
+                  panControl: false,
+                  rotateControl: false,
+                  scaleControl: false,
+                  overviewMapControl: false
+              };
+              map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+              marker = new google.maps.Marker({
+                  position: initialLocation,
+                  map: map,
+                  draggable: true,
+                  icon: '<%= asset_path 'flag-r.png' %>'
+              });
+              if ($("#error_explanation").length) {
+                  marker.setMap(null);
+                  markerpos = new google.maps.LatLng($('#spot_lat').val(), $('#spot_lng').val());
+                  marker = new google.maps.Marker({
+                      position: markerpos,
+                      map: map,
+                      draggable: false,
+                      icon: '<%= asset_path 'flag-b.png' %>'
+                  });
+                  map.setCenter(markerpos);
               }
-            });
-            //Resize Function
-    google.maps.event.addDomListener(window, "resize", function() {
-      var center = map.getCenter();
-      google.maps.event.trigger(map, "resize");
-      map.setCenter(center);
-    });
-        });
-    }
-}
-google.maps.event.addDomListener(document, 'page:change', initialize);
-$("#u_search").click(function(evt) {
-    evt.preventDefault();
-    searchAddress();
-});
+              google.maps.event.addListener(marker, 'dragend', function() {
+                  geocodePosition(marker.getPosition());
+                  map.panTo(marker.getPosition());
+                  map.setZoom(16);
+                  $("#u_flash").html('<div class="warning alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
+              });
+              google.maps.event.addListener(marker, 'click', function() {
+                if ($("#q_address").val().length != 0){
+                  $("#newspotform").show();
+                  $("#u-form").hide();
+                  $("#instruction").hide();
+                  marker.setIcon('<%= asset_path 'flag-b.png' %>');
+                  marker.setOptions({
+                      draggable: false
+                  });
+                }
+              });
+              //Resize Function
+      google.maps.event.addDomListener(window, "resize", function() {
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+      });
+          });
+      }
+  }
+  google.maps.event.addDomListener(document, 'page:change', initialize);
+  $("#u_search").click(function(evt) {
+      evt.preventDefault();
+      searchAddress();
+  });
 
-/* Draw Map */
-//$(document).ready(ready);
-// $(document).on('page:chnage', ready);
+  /* Draw Map */
+  //$(document).ready(ready);
+  // $(document).on('page:chnage', ready);
 
-/* Geocode Address */
-function searchAddress() {
-    var address = $("#q_address").val();
-    geocoder = new google.maps.Geocoder();
-    geocoder.geocode({
-        'address': address,
-        'region': 'IN'
-    }, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            marker.setPosition(results[0].geometry.location);
-            map.setCenter(results[0].geometry.location);
-            $("#spot_lat").val(results[0].geometry.location.lat());
-            $("#spot_lng").val(results[0].geometry.location.lng());
-            $("#spot_address").val(results[0].formatted_address);
-            $("#u_flash").html('<div class="info alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
-        } else {
-            $("#u_flash").html('<div class="error alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Address not found</div>');
-        }
-    });
-}
+  /* Geocode Address */
+  function searchAddress() {
+      var address = $("#q_address").val();
+      geocoder = new google.maps.Geocoder();
+      geocoder.geocode({
+          'address': address,
+          'region': 'IN'
+      }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              marker.setPosition(results[0].geometry.location);
+              map.setCenter(results[0].geometry.location);
+              $("#spot_lat").val(results[0].geometry.location.lat());
+              $("#spot_lng").val(results[0].geometry.location.lng());
+              $("#spot_address").val(results[0].formatted_address);
+              $("#u_flash").html('<div class="info alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Click on marker to submit the spot</div>');
+          } else {
+              $("#u_flash").html('<div class="error alert-dismissible" id="instruction"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>Address not found</div>');
+          }
+      });
+  }
 
-function geocodePosition(pos) {
-    geocoder = new google.maps.Geocoder();
-    geocoder.geocode({
-            latLng: pos
-        },
-        function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                $("#spot_address").val(results[0].formatted_address);
-                $("#q_address").val(results[0].formatted_address);
-                $("#spot_lat").val(results[0].geometry.location.lat());
-                $("#spot_lng").val(results[0].geometry.location.lng());
-                //$("#mapErrorMsg").hide(100);
-            } else {
-                //$("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
-            }
-        }
-    );
-}
+  function geocodePosition(pos) {
+      geocoder = new google.maps.Geocoder();
+      geocoder.geocode({
+              latLng: pos
+          },
+          function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  $("#spot_address").val(results[0].formatted_address);
+                  $("#q_address").val(results[0].formatted_address);
+                  $("#spot_lat").val(results[0].geometry.location.lat());
+                  $("#spot_lng").val(results[0].geometry.location.lng());
+                  //$("#mapErrorMsg").hide(100);
+              } else {
+                  //$("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+              }
+          }
+      );
+  }
 </script>
