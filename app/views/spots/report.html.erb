@@ -31,7 +31,8 @@
     scaleControl: false,
     overviewMapControl: false
   };
-  map = new google.maps.Map(document.getElementById('map-all'), mapOptions); <% @spots.each do |spot | %>
+  map = new google.maps.Map(document.getElementById('map-all'), mapOptions);
+  <% @spots.each do |spot | %>
       marker = new google.maps.Marker({
         position: new google.maps.LatLng( <%= spot.lat %> , <%= spot.lng %> ),
         address: '<%= spot.address %>',
@@ -41,7 +42,8 @@
         status: "<%= spot.status %>",
         map: map
       });
-    markers.push(marker); <% end %>
+    markers.push(marker);
+  <% end %>
     var bounds = new google.maps.LatLngBounds();
   var infowindow = new google.maps.InfoWindow({
     maxWidth: 300
