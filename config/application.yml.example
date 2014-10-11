@@ -1,0 +1,19 @@
+# Application configuration file example
+# Create application.yml in config/ directory
+# Add configuration values, as shown below.
+#
+
+TWITTER_KEY: "<Twitter Key>"
+TWITTER_SECRET: "<Twitter Secret>"
+SENDER_EMAIL_ID: "<Sender email id>"
+SENDER_EMAIL_PWD: "<Sender email password>"
+
+development:
+   APP_DOMAIN: "<Development app domain>"
+   FACEBOOK_APP_ID: "<Development facebook app id>"
+   FACEBOOK_SECRET: "<Development facebook app secret>"
+
+production:
+   APP_DOMAIN: "<Production app domain>"
+   FACEBOOK_APP_ID: "<Production facebook app id>"
+   FACEBOOK_SECRET: "<Production facebook app secret>"
