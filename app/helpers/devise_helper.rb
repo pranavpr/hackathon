@@ -9,7 +9,7 @@ module DeviseHelper
 
     html = <<-HTML
     <div id="error_explanation" class="error alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
       <div>#{sentence}</div>
       <ul>#{messages}</ul>
     </div>
