@@ -1,82 +1,82 @@
 <% provide(:title, 'Spot') %>
 <% provide(:subtitle, @spot.address) %>
 <div class="content">
-<div class="mapoverlay">
+  <div class="mapoverlay">
     <%= render 'shared/messages' %>
-      <div class="spot-infos pure-g">
-        <div class="pure-u-1 pure-u-md-1-1">
-            <div class="spot-info">
-                <div class="spot-info-header">
-                    <img class="pure-img" src="<%= @spot.photo %>" alt="test">
+    <div class="spot-infos pure-g">
+      <div class="pure-u-1 pure-u-md-1-1">
+        <div class="spot-info">
+          <div class="spot-info-header">
+            <img class="pure-img" src="<%= @spot.photo %>" alt="test">
+          </div>
+          <ul class="spot-info-list">
+            <li><%= @spot.address %></li>
+            <li><%= @spot.description %></li>
+            <li><%= @spot.date %></li>
+            <li>
+              <div id='uprogressbar' class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;" id="u_pb">
                 </div>
-                <ul class="spot-info-list">
-                    <li><%= @spot.address %></li>
-                    <li><%= @spot.description %></li>
-                    <li><%= @spot.date %></li>
-                    <li>
-                    <div id='uprogressbar' class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;" id="u_pb">
-                    </div>
-                    </div>
-                    </li>
-                </ul>
-                <button class="button-choose pure-button" id='u_join' <%= @spot.status == 1 ? 'disabled' : '' %> ><i class="fa fa-check-circle"></i>&nbsp;Join</button>
-                <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, join_path, class: "button-choose pure-button" %>
-            </div>
+              </div>
+            </li>
+          </ul>
+          <button class="button-choose pure-button" id='u_join' <%= @spot.status == 1 ? 'disabled' : '' %> ><i class="fa fa-check-circle"></i>&nbsp;Join</button>
+          <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, join_path, class: "button-choose pure-button" %>
         </div>
+      </div>
     </div>
   </div>
   <div id="map-all">
   </div>
   <script>
-    var marker;
-    var infowindow = null;
-    var map;
-            var mapOptions = {
-                zoom: 16,
-                zoomControl: true,
-                zoomControlOptions: {
-                    style: google.maps.ZoomControlStyle.DEFAULT,
-                    position: google.maps.ControlPosition.TOP_RIGHT
-                },
-                streetViewControl: false,
-                mapTypeControl: true,
-                panControl: false,
-                rotateControl: false,
-                scaleControl: false,
-                overviewMapControl: false
-            };
-            map = new google.maps.Map(document.getElementById('map-all'), mapOptions);
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng( <%= @spot.lat %> , <%= @spot.lng %> ),
-                address: '<%= @spot.address %>',
-                id: '<%= @spot.id %>',
-                icon: '<%= asset_path @spot.status == 1 ? "flag-g.png" : "flag-r.png" %>',
-                map: map
-            });
-            map.setCenter(marker.position);
-            /*var infowindow = new google.maps.InfoWindow(
-            {
-              maxWidth: 500
-            });
-            //infowindow.setContent("<div class='pure-g'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div>");
-            infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='<%= @spot.photo %>'></div></div><div class='pure-u-1-2'><div class='l-box'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div></div></div>");
-            infowindow.open(map, marker);
-            google.maps.event.addDomListener(marker, 'click', function() {
-                infowindow.setContent("<div style='width:300px;'>" + marker.address + "<br/><a href='/spots/" + marker.id + "'>Join this spot</a></div>");
-                infowindow.open(map, marker);
-            }); */
-            //Resize Function
-    google.maps.event.addDomListener(window, "resize", function() {
-      var center = map.getCenter();
-      google.maps.event.trigger(map, "resize");
-      map.setCenter(center);
-    });
-    $("#u_join").click(function(evt) {
-        evt.preventDefault();
-        $('#u_pb').css('width', parseInt($('#u_pb').attr('aria-valuenow'))+10+'%').attr('aria-valuenow', parseInt($('#u_pb').attr('aria-valuenow'))+10);
-        $('#u_join').attr('disabled', 'true');
-        $('#u_join').html('Joined');
-    });
+  var marker;
+  var infowindow = null;
+  var map;
+  var mapOptions = {
+    zoom: 16,
+    zoomControl: true,
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.DEFAULT,
+      position: google.maps.ControlPosition.TOP_RIGHT
+    },
+    streetViewControl: false,
+    mapTypeControl: true,
+    panControl: false,
+    rotateControl: false,
+    scaleControl: false,
+    overviewMapControl: false
+  };
+  map = new google.maps.Map(document.getElementById('map-all'), mapOptions);
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng( <%= @spot.lat %> , <%= @spot.lng %> ),
+    address: '<%= @spot.address %>',
+    id: '<%= @spot.id %>',
+    icon: '<%= asset_path @spot.status == 1 ? "flag-g.png" : "flag-r.png" %>',
+    map: map
+  });
+  map.setCenter(marker.position);
+  /*var infowindow = new google.maps.InfoWindow(
+  {
+    maxWidth: 500
+  });
+  //infowindow.setContent("<div class='pure-g'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div>");
+  infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='<%= @spot.photo %>'></div></div><div class='pure-u-1-2'><div class='l-box'>" + marker.address + "<br/><a class='pure-button pure-button-primary' href='/spots/" + marker.id + "'>Join this spot</a></div></div></div>");
+  infowindow.open(map, marker);
+  google.maps.event.addDomListener(marker, 'click', function() {
+      infowindow.setContent("<div style='width:300px;'>" + marker.address + "<br/><a href='/spots/" + marker.id + "'>Join this spot</a></div>");
+      infowindow.open(map, marker);
+  }); */
+  //Resize Function
+  google.maps.event.addDomListener(window, "resize", function() {
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
+  });
+  $("#u_join").click(function(evt) {
+    evt.preventDefault();
+    $('#u_pb').css('width', parseInt($('#u_pb').attr('aria-valuenow')) + 10 + '%').attr('aria-valuenow', parseInt($('#u_pb').attr('aria-valuenow')) + 10);
+    $('#u_join').attr('disabled', 'true');
+    $('#u_join').html('Joined');
+  });
   </script>
 </div>

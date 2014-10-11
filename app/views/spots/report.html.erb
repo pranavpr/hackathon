@@ -5,7 +5,7 @@
     <%= render 'shared/messages' %>
     <div id='info'>
       <div class="info alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
         Select a marker to report a completed spot
       </div>
     </div>
@@ -13,66 +13,57 @@
   <div id="map-all">
   </div>
   <script>
-    var marker;
-    var markers = new Array();
-    var infowindow = null;
-    var map;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        var mapOptions = {
-          center: initialLocation,
-          zoom: 16,
-          zoomControl: true,
-                  zoomControlOptions: {
-                    style: google.maps.ZoomControlStyle.DEFAULT,
-                    position: google.maps.ControlPosition.TOP_RIGHT
-                  },
-                  streetViewControl: false,
-                  mapTypeControl: true,
-                  panControl: false,
-                  rotateControl: false,
-                  scaleControl: false,
-                  overviewMapControl: false
-        };
-        map = new google.maps.Map(document.getElementById('map-all'), mapOptions);
-        <% @spots.each do | spot | %>
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng( <%= spot.lat %> , <%= spot.lng %> ),
-            address: '<%= spot.address %>',
-            id: '<%= spot.id %>',
-            icon: '<%= asset_path spot.status == 1 ? 'flag-g.png' : 'flag-o.png' %>',
-            photo: '<%= spot.photo %>',
-            status: '<%= spot.status %>',
-            map: map
-          });
-        markers.push(marker);
-        <% end %>
-        var bounds = new google.maps.LatLngBounds ();
-        var infowindow = new google.maps.InfoWindow(
-        {
-          maxWidth: 300
-        });
-        for (var i = 0; i < markers.length; i++) {
-          var marker = markers[i];
-          bounds.extend(marker.position);
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            // var buttontext = (this.status == 1) ? 'View this spot' : 'Report this spot';
-            var buttontext = 'Report this spot';
-            infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='" + this.photo + "'><br/><a class='pure-button pure-button-primary' href='/spots/" + this.id + "/report'>"+ buttontext +"</a></div></div><div class='pure-u-1-2'><div class='l-box'>" + this.address + "</div></div></div>");
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-          map.fitBounds(bounds);
-        }
-        //Resize Function
-      google.maps.event.addDomListener(window, "resize", function() {
-        var center = map.getCenter();
-        google.maps.event.trigger(map, "resize");
-        map.setCenter(center);
+  var marker;
+  var markers = new Array();
+  var infowindow = null;
+  var map;
+  var mapOptions = {
+    zoom: 16,
+    zoomControl: true,
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.DEFAULT,
+      position: google.maps.ControlPosition.TOP_RIGHT
+    },
+    streetViewControl: false,
+    mapTypeControl: true,
+    panControl: false,
+    rotateControl: false,
+    scaleControl: false,
+    overviewMapControl: false
+  };
+  map = new google.maps.Map(document.getElementById('map-all'), mapOptions); <% @spots.each do |spot | %>
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng( <%= spot.lat %> , <%= spot.lng %> ),
+        address: '<%= spot.address %>',
+        id: "<%= spot.id %>",
+        icon: "<%= asset_path spot.status == 1 ? 'flag-g.png' : 'flag-o.png' %>",
+        photo: "<%= spot.photo %>",
+        status: "<%= spot.status %>",
+        map: map
       });
-      });
-    }
+    markers.push(marker); <% end %>
+    var bounds = new google.maps.LatLngBounds();
+  var infowindow = new google.maps.InfoWindow({
+    maxWidth: 300
+  });
+  for (var i = 0; i < markers.length; i++) {
+    var marker = markers[i];
+    bounds.extend(marker.position);
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        // var buttontext = (this.status == 1) ? 'View this spot' : 'Report this spot';
+        var buttontext = 'Report this spot';
+        infowindow.setContent("<div class='pure-g'><div class='pure-u-1-2'><div class='l-box'><img class='pure-img' src='" + this.photo + "'><br/><a class='pure-button pure-button-primary' href='/spots/" + this.id + "/report'>" + buttontext + "</a></div></div><div class='pure-u-1-2'><div class='l-box'>" + this.address + "</div></div></div>");
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+    map.fitBounds(bounds);
+  }
+  //Resize Function
+  google.maps.event.addDomListener(window, "resize", function() {
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
+  });
   </script>
 </div>
