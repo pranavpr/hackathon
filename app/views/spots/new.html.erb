@@ -35,12 +35,21 @@
           <div class="l-box">
             <%= f.text_area :description, :class => 'pure-input-1', :placeholder => 'Description' %>
           </div>
-          <div class="l-box">
-            <%= f.date_field :date, :class => 'pure-input-1', :placeholder => 'dd/mm/yyyy' %>
+          <div class="pure-g">
+            <div class="pure-u-1 pure-u-md-1-2">
+              <div class="l-box">
+                <%= f.number_field :volunteers_requested, :class => 'pure-input-1', :placeholder => 'Volunteers Requested', in: 1..200, step: 1%>
+              </div>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-2">
+              <div class="l-box">
+                <%= f.date_field :date, :class => 'pure-input-1', :placeholder => 'dd/mm/yyyy' %>
+              </div>
+            </div>
           </div>
           <div class="l-box">
             <%= f.button'<i class="fa fa-check-circle"></i>&nbsp;Submit'.html_safe, class: "pure-button pure-button-primary", id: "submit" %>
-            <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, plan_path, class: "pure-button button-error" %>
+            <%= link_to '<i class="fa fa-times-circle"></i>&nbsp;Cancel'.html_safe, propose_path, class: "pure-button button-error" %>
           </div>
         </div>
       </fieldset>

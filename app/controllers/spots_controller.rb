@@ -54,9 +54,14 @@ class SpotsController < ApplicationController
 		end
 	end
 
+	def users
+		@spot = Spot.find(params[:id])
+		@users = @spot.users
+	end
+
 	private
 
 	def spot_params
-		params.require(:spot).permit(:lat, :lng, :address, :photo, :description, :date, :after_photo, :after_desc, :status)
+		params.require(:spot).permit(:lat, :lng, :address, :photo, :description, :date, :after_photo, :after_desc, :status, :volunteers_requested)
 	end
 end

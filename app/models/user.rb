@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
   validates :name, presence: true
+  has_many :spot_user_relationships, foreign_key: "user_id", dependent: :destroy
+  has_many :spots, through: :spot_user_relationships, source: :spot
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -54,5 +56,17 @@ class User < ActiveRecord::Base
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  def joined?(spot)
+    spot_user_relationships.find_by(spot_id: spot.id)
+  end
+
+  def join!(spot)
+    spot_user_relationships.create!(spot_id: spot.id)
+  end
+
+  def unjoin!(spot)
+    spot_user_relationships.find_by(spot_id: spot.id).destroy
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008144146) do
+ActiveRecord::Schema.define(version: 20141011161859) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20141008144146) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
+  create_table "spot_user_relationships", force: true do |t|
+    t.integer  "spot_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spot_user_relationships", ["spot_id", "user_id"], name: "index_spot_user_relationships_on_spot_id_and_user_id", unique: true
+  add_index "spot_user_relationships", ["spot_id"], name: "index_spot_user_relationships_on_spot_id"
+  add_index "spot_user_relationships", ["user_id"], name: "index_spot_user_relationships_on_user_id"
 
   create_table "spots", force: true do |t|
     t.float    "lat"
@@ -35,6 +46,8 @@ ActiveRecord::Schema.define(version: 20141008144146) do
     t.string   "after_photo"
     t.integer  "status"
     t.text     "after_desc"
+    t.integer  "volunteers_requested"
+    t.integer  "volunteers_pleged"
   end
 
   create_table "users", force: true do |t|
@@ -48,13 +61,12 @@ ActiveRecord::Schema.define(version: 20141008144146) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
     t.string   "image"
   end
 
