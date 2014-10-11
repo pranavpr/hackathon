@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
+  before_filter :authenticate_user!, only: [:spots]
 
   # GET /users/:id.:format
   def show
@@ -52,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def spots
-    @spots = current_user.spots
+    @spots = current_user.spots.where('date >= ?', Date.today).order('date ASC')
   end
 
   private

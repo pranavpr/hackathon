@@ -15,7 +15,7 @@
             <li><%= @spot.date %></li>
             <li>
               <div id='uprogressbar' class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;" id="u_pb">
+                <div class="progress-bar" role="progressbar" aria-valuenow="<%= @spot.volunteers_pleged %>" aria-valuemin="0" aria-valuemax="<%= @spot.volunteers_requested %>" style="width: <%= @spot.volunteers_pleged.to_f*100/@spot.volunteers_requested %>%;" id="u_pb">
                 </div>
               </div>
             </li>

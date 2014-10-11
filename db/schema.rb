@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011101021) do
+ActiveRecord::Schema.define(version: 20141011161859) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -46,10 +46,9 @@ ActiveRecord::Schema.define(version: 20141011101021) do
     t.string   "after_photo"
     t.integer  "status"
     t.text     "after_desc"
+    t.integer  "volunteers_requested"
+    t.integer  "volunteers_pleged"
   end
-
-# Could not dump table "test" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,7 +1,7 @@
 <% if @spot.status == 0 %>
   <% if current_user.joined?(@spot) %>
     <%= form_for(@spot.spot_user_relationships.find_by(spot_id: @spot.id), html: { method: :delete }) do |f| %>
-      <%= f.button "<i class='fa fa-check-circle'></i>&nbsp;Unjoin".html_safe, class: "button-choose pure-button" %>
+      <%= f.button "<i class='fa fa-times-circle'></i>&nbsp;Unjoin".html_safe, class: "button-choose pure-button" %>
     <% end %>
   <% else %>
     <%= form_for(@spot.spot_user_relationships.build(spot_id: @spot.id)) do |f| %>

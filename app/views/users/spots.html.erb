@@ -1,6 +1,20 @@
-<%= current_user.name %>
-<% if @spots.any? %>
-  <% @spots.each do |spot| %>
-    <%= spot.address %>
-  <% end %>
-<% end %>
+<% provide(:title, 'Spots') %>
+<% provide(:subtitle, 'Upcoming spots joined by you') %>
+<%= render 'shared/messages' %>
+<div class="header">
+  <h1><%= yield(:title) %></h1>
+  <h2><%= yield(:subtitle) %></h2>
+</div>
+<div class="content">
+  <div class="textcontent">
+    <p>
+      <% if @spots.any? %>
+        <% @spots.each do |spot| %>
+        <h2><i class="fa fa-calendar-o"></i>&nbsp;<%= spot.date.strftime("%d %B %Y") %></h2>
+          <div><%= spot.address %></div>
+          <div><a href="/spots/<%= spot.id %>">Details »</a></div>
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>

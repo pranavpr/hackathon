@@ -4,7 +4,7 @@ Hackathon::Application.routes.draw do
   resources :spots
   root "spots#index"
   match '/report',    to: 'spots#report',    via: 'get'
-  match '/plan',    to: 'spots#new',    via: 'get'
+  match '/propose',    to: 'spots#new',    via: 'get'
   match '/join',    to: 'spots#join',    via: 'get'
   match '/completed',    to: 'spots#completed',    via: 'get'
   match '/spots/:id/join',    to: 'spots#joinspot',    via: 'get'
