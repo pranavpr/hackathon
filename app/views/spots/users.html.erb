@@ -1,0 +1,6 @@
+<%= @spot.address %>
+<% if @users.any? %>
+  <% @users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+<% end %>

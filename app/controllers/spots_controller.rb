@@ -54,6 +54,11 @@ class SpotsController < ApplicationController
 		end
 	end
 
+	def users
+		@spot = Spot.find(params[:id])
+		@users = @spot.users
+	end
+
 	private
 
 	def spot_params
