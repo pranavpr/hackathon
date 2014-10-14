@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20141011161859) do
     t.string   "after_photo"
     t.integer  "status"
     t.text     "after_desc"
-    t.integer  "volunteers_requested"
-    t.integer  "volunteers_pleged"
+    t.integer  "volunteers_requested", default: 0
+    t.integer  "volunteers_pleged",    default: 0
   end
 
   create_table "users", force: true do |t|
@@ -61,12 +61,13 @@ ActiveRecord::Schema.define(version: 20141011161859) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "image"
   end
 
